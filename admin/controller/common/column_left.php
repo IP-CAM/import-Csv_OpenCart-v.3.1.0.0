@@ -15,7 +15,6 @@ class ControllerCommonColumnLeft extends Controller {
 				'href'     => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']),
 				'children' => array()
 			);
-			var_dump($data['menus']);die;
 			
 			// Catalog
 			$catalog = array();
