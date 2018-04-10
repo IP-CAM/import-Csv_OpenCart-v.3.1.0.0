@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ad1c88-24b6-4f9f-b48a-92e55cdbd1fa" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/controller/extension/module/recentcustomers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/language/en-gb/extension/module/recentcustomers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/model/extension/recentcustomers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/view/template/extension/module/recentcustomers.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/controller/common/column_left.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/common/column_left.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/controller/common/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/common/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/language/en-gb/common/column_left.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/language/en-gb/common/column_left.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/language/en-gb/common/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/language/en-gb/common/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/view/template/common/dashboard.twig" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/template/common/dashboard.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/view/template/extension/module/first_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/template/extension/module/first_module.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/controller/extension/module/first_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/extension/module/first_module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/model/extension/recentcustomers.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/model/extension/recentcustomers.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +15,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="column_left.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/controller/common/column_left.php">
+      <file leaf-file-name="first_module.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/controller/extension/module/first_module.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
-              <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+              <caret line="22" column="91" lean-forward="true" selection-start-line="22" selection-start-column="91" selection-end-line="22" selection-end-column="91" />
+              <folding>
+                <element signature="e#6#252#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recentcustomers.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/model/extension/recentcustomers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="85" selection-start-line="3" selection-start-column="85" selection-end-line="3" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -92,7 +96,6 @@
         <option value="$PROJECT_DIR$/catalog/controller/common/home.php" />
         <option value="$PROJECT_DIR$/catalog/view/theme/default/template/common/home.twig" />
         <option value="$PROJECT_DIR$/admin/language/en-gb/extension/module/first_module.php" />
-        <option value="$PROJECT_DIR$/admin/controller/extension/module/first_module.php" />
         <option value="$PROJECT_DIR$/admin/view/template/extension/module/first_module.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/admin/language/en-gb/common/dashboard.php" />
@@ -105,10 +108,11 @@
         <option value="$PROJECT_DIR$/admin/controller/dashboard/recentcustomers.php" />
         <option value="$PROJECT_DIR$/admin/view/template/common/dashboard.twig" />
         <option value="$PROJECT_DIR$/admin/controller/common/column_left.php" />
-        <option value="$PROJECT_DIR$/admin/model/extension/recentcustomers.php" />
         <option value="$PROJECT_DIR$/admin/controller/extension/module/recentcustomers.php" />
         <option value="$PROJECT_DIR$/admin/language/en-gb/extension/module/recentcustomers.php" />
         <option value="$PROJECT_DIR$/admin/view/template/extension/module/recentcustomers.twig" />
+        <option value="$PROJECT_DIR$/admin/controller/extension/module/first_module.php" />
+        <option value="$PROJECT_DIR$/admin/model/extension/recentcustomers.php" />
       </list>
     </option>
   </component>
@@ -149,22 +153,27 @@
               <item name="opencart" type="b2602c69:ProjectViewProjectNode" />
               <item name="opencart" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="opencart" type="b2602c69:ProjectViewProjectNode" />
               <item name="opencart" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="en-gb" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="extension" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="opencart" type="b2602c69:ProjectViewProjectNode" />
               <item name="opencart" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="en-gb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="common" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="opencart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="opencart" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="extension" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -212,7 +221,7 @@
       <option name="presentableId" value="Default" />
       <updated>1522933163080</updated>
       <workItem from="1522933164262" duration="23558000" />
-      <workItem from="1523348332423" duration="13065000" />
+      <workItem from="1523348332423" duration="13414000" />
     </task>
     <task id="LOCAL-00001" summary="Second Commit">
       <created>1523351524775</created>
@@ -221,11 +230,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523351524775</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Second Commit">
+      <created>1523371859056</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523371859056</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36623000" />
+    <option name="totallyTimeSpent" value="36972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -268,13 +284,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/system/library/pagination.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/system/modification.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -540,13 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/model/extension/recentcustomers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/language/en-gb/extension/module/first_module.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -591,16 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controller/extension/module/first_module.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="53" column="64" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
-          <folding>
-            <element signature="e#6#252#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/view/template/extension/module/account.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -625,10 +617,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controller/extension/module/account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/controller/common/column_left.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controller/extension/module/first_module.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <caret line="22" column="91" lean-forward="true" selection-start-line="22" selection-start-column="91" selection-end-line="22" selection-end-column="91" />
+          <folding>
+            <element signature="e#6#252#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/model/extension/recentcustomers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="85" selection-start-line="3" selection-start-column="85" selection-end-line="3" selection-end-column="85" />
         </state>
       </provider>
     </entry>

@@ -13,7 +13,7 @@
  * The controller name must be like Controller + directory path (with first character of each folder in capital) + file name (with first character in capital)
  * For version 2.3.0.0 and upper, the name of the controller must be ControllerExtensionModuleFirstModule
  */
-class ControllerModuleFirstModule extends Controller {
+class ControllerExtensionModuleFirstModule extends Controller {
     /**
      * property named $error is defined to put errors
      * @var array
