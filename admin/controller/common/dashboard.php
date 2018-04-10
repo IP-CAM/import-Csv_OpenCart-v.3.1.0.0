@@ -36,6 +36,7 @@ class ControllerCommonDashboard extends Controller {
 		
 		// Add all the modules which have multiple settings for each module
 		foreach ($extensions as $code) {
+
 			if ($this->config->get('dashboard_' . $code . '_status') && $this->user->hasPermission('access', 'extension/dashboard/' . $code)) {
 				$output = $this->load->controller('extension/dashboard/' . $code . '/dashboard');
 				
@@ -85,6 +86,7 @@ class ControllerCommonDashboard extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
+        $data['recentcustomers'] = $this->load->controller('dashboard/recentcustomers');
 
 		$this->response->setOutput($this->load->view('common/dashboard', $data));
 	}

@@ -27,6 +27,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+            if ($this->user->hasPermission('access', 'extension/module/recentcustomers')) {
+                $catalog[] = array(
+                    'name'	   => $this->language->get('text_recent_customers'),
+                    'href'     => $this->url->link('extension/module/recentcustomers', 'user_token=' . $this->session->data['user_token']),
+                    'children' => array()
+                );
+            }
+
 			// Products
 			$product = array();
 
@@ -438,7 +446,7 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			if ($this->user->hasPermission('access', 'setting/setting')) {
 				$system[] = array(
-					'name'	   => $this->language->get('text_setting'),
+					'name'	   => $this->language->get('text_setting'),//Settings => Store
 					'href'     => $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']),
 					'children' => array()		
 				);	
@@ -449,7 +457,7 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			if ($this->user->hasPermission('access', 'user/user')) {
 				$user[] = array(
-					'name'	   => $this->language->get('text_users'),
+					'name'	   => $this->language->get('text_users'), //Users
 					'href'     => $this->url->link('user/user', 'user_token=' . $this->session->data['user_token']),
 					'children' => array()		
 				);	
@@ -457,7 +465,7 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			if ($this->user->hasPermission('access', 'user/user_permission')) {	
 				$user[] = array(
-					'name'	   => $this->language->get('text_user_group'),
+					'name'	   => $this->language->get('text_user_group'), //User Groups
 					'href'     => $this->url->link('user/user_permission', 'user_token=' . $this->session->data['user_token']),
 					'children' => array()		
 				);	
@@ -465,7 +473,7 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			if ($this->user->hasPermission('access', 'user/api')) {		
 				$user[] = array(
-					'name'	   => $this->language->get('text_api'),
+					'name'	   => $this->language->get('text_api'), //API
 					'href'     => $this->url->link('user/api', 'user_token=' . $this->session->data['user_token']),
 					'children' => array()		
 				);	
@@ -473,7 +481,7 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			if ($user) {
 				$system[] = array(
-					'name'	   => $this->language->get('text_users'),
+					'name'	   => $this->language->get('text_users'),//Users
 					'href'     => '',
 					'children' => $user		
 				);
