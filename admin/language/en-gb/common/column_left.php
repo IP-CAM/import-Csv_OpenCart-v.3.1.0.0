@@ -1,6 +1,8 @@
 <?php
 // Text
 $_['text_affiliate']            = 'Affiliate';
+$_['text_anagrafica_agenti']    = 'Anagrafica Agenti';
+$_['text_anagrafiche']          = 'Anagrafiche';
 $_['text_api']                  = 'API';
 $_['text_attribute']            = 'Attributes';
 $_['text_attribute_group']      = 'Attribute Groups';
@@ -20,6 +22,7 @@ $_['text_custom_field']         = 'Custom Fields';
 $_['text_dashboard']            = 'Dashboard';
 $_['text_design']               = 'Design';
 $_['text_download']             = 'Downloads';
+$_['text_export_import']        = 'Importa CSV';
 $_['text_log']                  = 'Error Logs';
 $_['text_event']                = 'Events';
 $_['text_extension']            = 'Extensions';

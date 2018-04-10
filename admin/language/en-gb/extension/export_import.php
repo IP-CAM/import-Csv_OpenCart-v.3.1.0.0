@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                         = 'Esporta / Importa';
+$_['heading_title']                         = 'Importa CSV';
 
 // Text
 $_['text_success']                          = 'Successo: hai importato con successo i tuoi dati!';

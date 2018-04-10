@@ -60,7 +60,7 @@ class ControllerExtensionExportImport extends Controller {
 
 				if ($this->model_extension_export_import->importCsv($file)) {
 					$this->session->data['success'] = $this->language->get('text_success');
-					$this->response->redirect($this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], $this->ssl));
+					$this->response->redirect($this->url->link('extension/module/recentcostumers', 'user_token=' . $this->session->data['user_token'], true));
 				}
 				else {
 					$this->error['warning'] = $this->language->get('error_upload');
@@ -260,18 +260,18 @@ class ControllerExtensionExportImport extends Controller {
 		$data['breadcrumbs'] = array();
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], $this->ssl)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], $this->ssl)
+			'href' => $this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
-		$data['back'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], $this->ssl);
+		$data['back'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true);
 		$data['button_back'] = $this->language->get( 'button_back' );
-		$data['import'] = $this->url->link('extension/export_import/upload', 'user_token=' . $this->session->data['user_token'], $this->ssl);
-		$data['export'] = $this->url->link('extension/export_import/download', 'user_token=' . $this->session->data['user_token'], $this->ssl);
-		$data['settings'] = $this->url->link('extension/export_import/settings', 'user_token=' . $this->session->data['user_token'], $this->ssl);
+		$data['import'] = $this->url->link('extension/export_import/upload', 'user_token=' . $this->session->data['user_token'], true);
+		$data['export'] = $this->url->link('extension/export_import/download', 'user_token=' . $this->session->data['user_token'], true);
+		$data['settings'] = $this->url->link('extension/export_import/settings', 'user_token=' . $this->session->data['user_token'], true);
 		$data['post_max_size'] = $this->return_bytes( ini_get('post_max_size') );
 		$data['upload_max_filesize'] = $this->return_bytes( ini_get('upload_max_filesize') );
 
