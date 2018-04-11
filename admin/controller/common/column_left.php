@@ -152,14 +152,6 @@ class ControllerCommonColumnLeft extends Controller {
 
             $anagrafiche = array();
 
-            if ($this->user->hasPermission('access', 'extension/module/recentcustomers')) {
-                $anagrafiche[] = array(
-                    'name'	   => $this->language->get('text_recent_customers'),
-                    'href'     => $this->url->link('extension/module/recentcustomers', 'user_token=' . $this->session->data['user_token']),
-                    'children' => array()
-                );
-            }
-
             if ($this->user->hasPermission('access', 'extension/module/anagrafica_agenti')){
                 $anagrafiche[] = array(
                     'name' => $this->language->get('text_anagrafica_agenti'),

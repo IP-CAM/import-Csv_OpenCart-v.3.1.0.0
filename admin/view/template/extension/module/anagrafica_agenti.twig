@@ -1,0 +1,110 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fa fa-reply"></i></a>
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    {% for breadcrumb in breadcrumbs %}
+                        <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                    {% endfor %}
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error_warning %}
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        {% if success %}
+            <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        <div class="card">
+            <div class="card-header"><i class="fa fa-list"></i> {{ text_list }}</div>
+            <div class="card-body">
+                <form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center"></td>
+                                <td class="text-left">{{ codice }}</td>
+                                <td class="text-left">{{ codice_agente_padre }}</td>
+                                <td class="text-left">{{ ragione_sociale }}</td>
+                                <td class="text-left">{{ attivo }}</td>
+                                <td class="text-left">{{ p_iva }}</td>
+                                <td class="text-left">{{ codice_fiscale }}</td>
+                                <td class="text-left">{{ via }}</td>
+                                <td class="text-left">{{ cap }}</td>
+                                <td class="text-left">{{ provincia }}</td>
+                                <td class="text-left">{{ citta }}</td>
+                                <td class="text-left">{{ latitudine }}</td>
+                                <td class="text-left">{{ longtitudine }}</td>
+                                <td class="text-left">{{ nazione }}</td>
+                                <td class="text-left">{{ telefono }}</td>
+                                <td class="text-left">{{ fax }}</td>
+                                <td class="text-left">{{ sito_web }}</td>
+                                <td class="text-left">{{ email }}</td>
+                                <td class="text-left">{{ codice_listino }}</td>
+                                <td class="text-left">{{ note }}</td>
+                                <td class="text-left">{{ creazione }}</td>
+                                <td class="text-left">{{ ultima_modifica }}</td>
+                                <td class="text-left">{{ mail_customer }}</td>
+                                <td class="text-right">{{ categoria_vendita }}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if anagrafica_agenti %}
+                                {% for agente in anagrafica_agenti %}
+                                    <tr>
+                                        <td class="text-left">{{ agente.codice }}</td>
+                                        <td class="text-left">{{ agente.codice_agente_padre }}</td>
+                                        <td class="text-left">{{ agente.ragione_sociale }}</td>
+                                        <td class="text-right">{{ agente.attivo }}</td>
+                                        <td class="text-right">{{ agente.p_iva }}</td>
+                                        <td class="text-right">{{ agente.codice_fiscale }}</td>
+                                        <td class="text-right">{{ agente.via }}</td>
+                                        <td class="text-right">{{ agente.cap }}</td>
+                                        <td class="text-right">{{ agente.provincia }}</td>
+                                        <td class="text-right">{{ agente.citta }}</td>
+                                        <td class="text-right">{{ agente.latitudine }}</td>
+                                        <td class="text-right">{{ agente.longtitudine }}</td>
+                                        <td class="text-right">{{ agente.nazione }}</td>
+                                        <td class="text-right">{{ agente.telefono }}</td>
+                                        <td class="text-right">{{ agente.fax }}</td>
+                                        <td class="text-right">{{ agente.sito_web }}</td>
+                                        <td class="text-right">{{ agente.email }}</td>
+                                        <td class="text-right">{{ agente.codice_listino }}</td>
+                                        <td class="text-right">{{ agente.note }}</td>
+                                        <td class="text-right">{{ agente.creazione }}</td>
+                                        <td class="text-right">{{ agente.ultima_modifica }}</td>
+                                        <td class="text-right">{{ agente.mail_customer }}</td>
+                                        <td class="text-right">{{ agente.categoria_vendita }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="text-center" colspan="24">{{ text_no_results }}</td>
+                                </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                {#<div class="row">#}
+                    {#<div class="col-sm-6 text-left">{{ pagination }}</div>#}
+                    {#<div class="col-sm-6 text-right">{{ results }}</div>#}
+                {#</div>#}
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }}

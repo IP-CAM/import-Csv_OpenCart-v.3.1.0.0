@@ -47,7 +47,7 @@ class ControllerExtensionExportImport extends Controller {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
-        echo "table created";
+        echo "Table Created.Go back to dashboard.";
     }
 
 	public function upload() {
@@ -60,7 +60,7 @@ class ControllerExtensionExportImport extends Controller {
 
 				if ($this->model_extension_export_import->importCsv($file)) {
 					$this->session->data['success'] = $this->language->get('text_success');
-					$this->response->redirect($this->url->link('extension/module/recentcostumers', 'user_token=' . $this->session->data['user_token'], true));
+					$this->response->redirect($this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], true));
 				}
 				else {
 					$this->error['warning'] = $this->language->get('error_upload');
@@ -481,14 +481,7 @@ class ControllerExtensionExportImport extends Controller {
 	protected function validateUploadForm() {
 		if (!$this->user->hasPermission('modify', 'extension/export_import')) {
 			$this->error['warning'] = $this->language->get('error_permission');
-		} else if (!isset( $this->request->post['incremental'] )) {
-			$this->error['warning'] = $this->language->get( 'error_incremental' );
-		} else if ($this->request->post['incremental'] != '0') {
-			if ($this->request->post['incremental'] != '1') {
-				$this->error['warning'] = $this->language->get( 'error_incremental' );
-			}
 		}
-
 		if (!isset($this->request->files['upload']['name'])) {
 			if (isset($this->error['warning'])) {
 				$this->error['warning'] .= "<br /\n" . $this->language->get( 'error_upload_name' );

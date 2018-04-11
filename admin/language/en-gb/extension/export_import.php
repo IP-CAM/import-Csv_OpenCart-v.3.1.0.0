@@ -202,7 +202,7 @@ $_['help_range_type']                       = '(Optional, leave empty if not nee
 $_['help_category_filter']                  = '(Optional, leave empty if not needed)';
 $_['help_incremental_yes']                  = '(Update and/or add data)';
 $_['help_incremental_no']                   = '(Delete all old data before Import)';
-$_['help_import']                           = 'Spreadsheet can have categories, products, attribute definitions, option definitions, or filter definitions. ';
+$_['help_import']                           = 'Il foglio di calcolo può avere agenti,articoli,catalogazione ect ';
 $_['help_import_old']                       = 'Spreadsheet can have categories, products, attribute definitions, or option definitions. ';
 $_['help_format']                           = 'Do an Export first to see the exact format of the worksheets!';
 ?>
