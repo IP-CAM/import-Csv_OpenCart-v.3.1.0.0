@@ -6095,9 +6095,9 @@ class ModelToolExportImport extends Model {
         //parse data from csv file line by line
         $sql = "TRUNCATE TABLE `".DB_PREFIX."anagrafica_agenti`";
         $this->db->query( $sql );
-        while(($line = fgetcsv($csvFile, 10000, ",")) !== FALSE){
+        while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
 
-			$sql1 = ("INSERT INTO " . DB_PREFIX . "anagrafica_agenti SET codice = '" . $line[0] . "', codice_agente_padre = '" . $line[1] . "', codice_ruolo = '" . $line[2] . "', ragione_sociale = '" . $line[3] . "', attivo = '" . $line[4] . "', p_iva = '" . $line[5] . "', codice_fiscale = '" . $line[6] . "', via = '" . $line[7] . "', cap = '" . $line[8] . "', provincia = '" . $line[9] . "', citta = '" . $this->db->escape($line[10]) . "', latitudine = '" . $line[11] . "', longtitudine = '" . $line[12] . "', nazione = '" . $line[13] . "', telefono = '" . $line[14] . "', fax = '" . $line[15] . "', sito_web = '" . $line[16] . "', email = '" . $line[17] . "', codice_listino = '" . $line[18] . "', note = '" . $line[19] . "', creazione = '" . $line[20] . "', ultima_modifica = '" . $line[21] . "', mail_customer = '" . $line[22] . "', categoria_vendita = '" . $line[23] . "'");
+			$sql1 = ("INSERT INTO " . DB_PREFIX . "anagrafica_agenti SET codice = '" . $this->db->escape($line[0]) . "', codice_agente_padre = '" . $this->db->escape($line[1]) . "', codice_ruolo = '" . $this->db->escape($line[2]) . "', ragione_sociale = '" . $this->db->escape($line[3]) . "', attivo = '" . $this->db->escape($line[4]) . "', p_iva = '" . $this->db->escape($line[5]) . "', codice_fiscale = '" . $this->db->escape($line[6]) . "', via = '" . $this->db->escape($line[7]) . "', cap = '" . $this->db->escape($line[8]) . "', provincia = '" . $this->db->escape($line[9]) . "', citta = '" . $this->db->escape($line[10]) . "', latitudine = '" .  $this->db->escape($line[11]) . "', longtitudine = '" .  $this->db->escape($line[12]) . "', nazione = '" .  $this->db->escape($line[13]) . "', telefono = '" .  $this->db->escape($line[14]) . "', fax = '" .  $this->db->escape($line[15]) . "', sito_web = '" .  $this->db->escape($line[16]) . "', email = '" .  $this->db->escape($line[17]) . "', codice_listino = '" . $this->db->escape($line[18]) . "', note = '" .  $this->db->escape($line[19]) . "', creazione = '" . $this->db->escape($line[20]) . "', ultima_modifica = '" . $this->db->escape($line[21]) . "', mail_customer = '" . $this->db->escape($line[22]) . "', categoria_vendita = '" . $this->db->escape($line[23]) . "'");
 			$this->db->query($sql1);
 
         }
@@ -6113,12 +6113,33 @@ class ModelToolExportImport extends Model {
         //skip first line
         fgetcsv($csvFile);
         //parse data from csv file line by line
-        while(($line = fgetcsv($csvFile, 10000, ",")) !== FALSE){
+        while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
 
-            $concatenazione = $line[0].'-'.$line[1].'-'.$line[2].'-'.$line[3];
+            $concatenazione = $line[0].'-'.$line[1].'-'.$line[2].'-'.$line[3].'-'.$line[4].'-'.$line[5].'-'.$line[6].'-'.$line[7].'-'.$line[8].'-'.$line[9].'-'.$line[10].'-'.$line[11].'-'.$line[12].'-'.$line[13].'-'.$line[14].'-'.$line[15].'-'.$line[16].'-'.$line[17].'-'.$line[18].'-'.$line[19].'-'.$line[20].'-'.$line[21].'-'.$this->db->escape($line[22]).'-'.$line[23].'-'.$line[24].'-'.$line[25].'-'.$line[26].'-'.$line[27].'-'.$line[28];
+            $md5 = md5($concatenazione);
+            $query = $this->db->query("SELECT opencart_id,checksum_md5 FROM " . DB_PREFIX . "checksums WHERE csv_id='".$this->db->escape((string)$line[0])."' and opencart_table='oc_product'");
 
-            $sql1 = ("INSERT INTO " . DB_PREFIX . "product SET codice = '" . $line[0] . "', codice_agente_padre = '" . $line[1] . "', codice_ruolo = '" . $line[2] . "', ragione_sociale = '" . $line[3] . "', attivo = '" . $line[4] . "', p_iva = '" . $line[5] . "', codice_fiscale = '" . $line[6] . "', via = '" . $line[7] . "', cap = '" . $line[8] . "', provincia = '" . $line[9] . "', citta = '" . $this->db->escape($line[10]) . "', latitudine = '" . $line[11] . "', longtitudine = '" . $line[12] . "', nazione = '" . $line[13] . "', telefono = '" . $line[14] . "', fax = '" . $line[15] . "', sito_web = '" . $line[16] . "', email = '" . $line[17] . "', codice_listino = '" . $line[18] . "', note = '" . $line[19] . "', creazione = '" . $line[20] . "', ultima_modifica = '" . $line[21] . "', mail_customer = '" . $line[22] . "', categoria_vendita = '" . $line[23] . "'");
-            $this->db->query($sql1);
+            if ($query->num_rows == 0) { //si tratta di un nuovo prodotto che non abbiamo mai gestito e quindi va fatto l'inserimento
+
+                $sql = ("INSERT INTO " . DB_PREFIX . "product SET ean = '" . $this->db->escape($line[2]) . "' ,date_added = NOW(), date_modified = NOW()");
+                $this->db->query($sql);
+                $product_id = $this->db->getLastId();
+                $this->db->query("INSERT INTO " . DB_PREFIX . "checksums (`csv_id`, `opencart_id`, `opencart_table`, `checksum_md5`, `date_add`, `date_modified`) VALUES ('".$this->db->escape((string)$line[0])."','".(int)$product_id."','oc_product', '".$md5."', '".date('Y-m-d')."', '".date('Y-m-d')."')");
+
+            }
+            else { //dobbiamo controllare se il prodotto è da aggiornare o meno nel DB
+                foreach ($query->rows as $result) {
+
+                    $opencart_id = $result['opencart_id'];
+                    $checksum_md5 = $result['checksum_md5'];
+                }
+                if ($checksum_md5 != $md5) { //essendo gli MD5 differenti, è necessario un aggiornamento
+                    $this->db->query("UPDATE " . DB_PREFIX . "product SET ean = '" . $this->db->escape((string)$line[2]) . "' WHERE product_id = '" . (int)$opencart_id . "'");
+                    //effettuiamo l'UPDATE in oc_checksums per il prodotto $checksum_md5 salvando la nuova MD5 ed aggiornando la data in date_modified
+                    $this->db->query("UPDATE " . DB_PREFIX . "checksums SET checksum_md5 = '" . $checksum_md5 . "' WHERE opencart_id = '" . (int)$opencart_id . "'");
+                }
+
+            }
 
         }
         fclose($csvFile);

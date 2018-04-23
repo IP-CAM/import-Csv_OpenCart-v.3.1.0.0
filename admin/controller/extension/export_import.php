@@ -72,15 +72,27 @@ class ControllerExtensionExportImport extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateUploadForm())) {
 			if ((isset( $this->request->files['upload'] )) && (is_uploaded_file($this->request->files['upload']['tmp_name']))) {
 				$file = $this->request->files['upload']['tmp_name'];
+				if ($this->request->files['upload']['name'] == "Anagrafica_articoli.csv"){
+                    if ($this->model_extension_export_import->importCsvAnagraficaArticoli($file)) {
+                        $this->session->data['success'] = $this->language->get('text_success');
+                        $this->response->redirect($this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], true));
+                    }
+                    else {
+                        $this->error['warning'] = $this->language->get('error_upload');
+                        $this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details_2_1_x' );
+                    }
+                }
+                if ($this->request->files['upload']['name'] == "Anagrafica_agenti.csv"){
+                    if ($this->model_extension_export_import->importCsv($file)) {
+                        $this->session->data['success'] = $this->language->get('text_success');
+                        $this->response->redirect($this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], true));
+                    }
+                    else {
+                        $this->error['warning'] = $this->language->get('error_upload');
+                        $this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details_2_1_x' );
+                    }
+                }
 
-				if ($this->model_extension_export_import->importCsv($file)) {
-					$this->session->data['success'] = $this->language->get('text_success');
-					$this->response->redirect($this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], true));
-				}
-				else {
-					$this->error['warning'] = $this->language->get('error_upload');
-					$this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details_2_1_x' );
-				}
 			}
 		}
 

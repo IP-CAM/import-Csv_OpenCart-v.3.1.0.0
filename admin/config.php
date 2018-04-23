@@ -1,18 +1,18 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/opencart/admin/');
-define('HTTP_CATALOG', 'http://localhost/opencart/');
+define('HTTP_SERVER', 'http://localhost/importCsv/admin/');
+define('HTTP_CATALOG', 'http://localhost/importCsv/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/opencart/admin/');
-define('HTTPS_CATALOG', 'http://localhost/opencart/');
+define('HTTPS_SERVER', 'http://localhost/importCsv/admin/');
+define('HTTPS_CATALOG', 'http://localhost/importCsv/');
 
 // DIR
-define('DIR_APPLICATION', '/var/www/html/opencart/admin/');
-define('DIR_SYSTEM', '/var/www/html/opencart/system/');
-define('DIR_IMAGE', '/var/www/html/opencart/image/');
+define('DIR_APPLICATION', '/var/www/html/importCsv/admin/');
+define('DIR_SYSTEM', '/var/www/html/importCsv/system/');
+define('DIR_IMAGE', '/var/www/html/importCsv/image/');
 define('DIR_STORAGE', '/var/www/storage/');
-define('DIR_CATALOG', '/var/www/html/opencart/catalog/');
+define('DIR_CATALOG', '/var/www/html/importCsv/catalog/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');

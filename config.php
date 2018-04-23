@@ -1,14 +1,14 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/opencart/');
+define('HTTP_SERVER', 'http://localhost/importCsv/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/opencart/');
+define('HTTPS_SERVER', 'http://localhost/importCsv/');
 
 // DIR
-define('DIR_APPLICATION', '/var/www/html/opencart/catalog/');
-define('DIR_SYSTEM', '/var/www/html/opencart/system/');
-define('DIR_IMAGE', '/var/www/html/opencart/image/');
+define('DIR_APPLICATION', '/var/www/html/importCsv/catalog/');
+define('DIR_SYSTEM', '/var/www/html/importCsv/system/');
+define('DIR_IMAGE', '/var/www/html/importCsv/image/');
 define('DIR_STORAGE', '/var/www/storage/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/theme/');
