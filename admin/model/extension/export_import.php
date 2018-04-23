@@ -6106,6 +6106,25 @@ class ModelToolExportImport extends Model {
 
 	}
 
+	public function importCsvAnagraficaArticoli($file){
+
+        $csvFile = fopen($file, 'r');
+
+        //skip first line
+        fgetcsv($csvFile);
+        //parse data from csv file line by line
+        while(($line = fgetcsv($csvFile, 10000, ",")) !== FALSE){
+
+            $concatenazione = $line[0].'-'.$line[1].'-'.$line[2].'-'.$line[3];
+
+            $sql1 = ("INSERT INTO " . DB_PREFIX . "product SET codice = '" . $line[0] . "', codice_agente_padre = '" . $line[1] . "', codice_ruolo = '" . $line[2] . "', ragione_sociale = '" . $line[3] . "', attivo = '" . $line[4] . "', p_iva = '" . $line[5] . "', codice_fiscale = '" . $line[6] . "', via = '" . $line[7] . "', cap = '" . $line[8] . "', provincia = '" . $line[9] . "', citta = '" . $this->db->escape($line[10]) . "', latitudine = '" . $line[11] . "', longtitudine = '" . $line[12] . "', nazione = '" . $line[13] . "', telefono = '" . $line[14] . "', fax = '" . $line[15] . "', sito_web = '" . $line[16] . "', email = '" . $line[17] . "', codice_listino = '" . $line[18] . "', note = '" . $line[19] . "', creazione = '" . $line[20] . "', ultima_modifica = '" . $line[21] . "', mail_customer = '" . $line[22] . "', categoria_vendita = '" . $line[23] . "'");
+            $this->db->query($sql1);
+
+        }
+        fclose($csvFile);
+        return true;
+	}
+
 
 	public function upload( $filename, $incremental=false ) {
 		// we use our own error handler

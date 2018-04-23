@@ -28,125 +28,125 @@ class ControllerCommonColumnLeft extends Controller {
 //			}
 //
 //
-//			// Products
-//			$product = array();
-//
-//			if ($this->user->hasPermission('access', 'catalog/product')) {
-//				$product[] = array(
-//					'name'	   => $this->language->get('text_product'),
-//					'href'     => $this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/product_option')) {
-//				$product[] = array(
-//					'name'	   => $this->language->get('text_product_option'),
-//					'href'     => $this->url->link('catalog/product_option', 'user_token=' . $this->session->data['user_token']) ,
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($product) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_product'),
-//					'href'     => '',
-//					'children' => $product
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/recurring')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_recurring'),
-//					'href'     => $this->url->link('catalog/recurring', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/filter')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_filter'),
-//					'href'     => $this->url->link('catalog/filter', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			// Attributes
-//			$attribute = array();
-//
-//			if ($this->user->hasPermission('access', 'catalog/attribute')) {
-//				$attribute[] = array(
-//					'name'     => $this->language->get('text_attribute'),
-//					'href'     => $this->url->link('catalog/attribute', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/attribute_group')) {
-//				$attribute[] = array(
-//					'name'	   => $this->language->get('text_attribute_group'),
-//					'href'     => $this->url->link('catalog/attribute_group', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($attribute) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_attribute'),
-//					'href'     => '',
-//					'children' => $attribute
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/option')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_option'),
-//					'href'     => $this->url->link('catalog/option', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/manufacturer')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_manufacturer'),
-//					'href'     => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/download')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_download'),
-//					'href'     => $this->url->link('catalog/download', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/review')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_review'),
-//					'href'     => $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($this->user->hasPermission('access', 'catalog/information')) {
-//				$catalog[] = array(
-//					'name'	   => $this->language->get('text_information'),
-//					'href'     => $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']),
-//					'children' => array()
-//				);
-//			}
-//
-//			if ($catalog) {
-//				$data['menus'][] = array(
-//					'id'       => 'menu-catalog',
-//					'icon'	   => 'fa-tags',
-//					'name'	   => $this->language->get('text_catalog'),
-//					'href'     => '',
-//					'children' => $catalog
-//				);
-//			}
+			// Products
+			$product = array();
+
+			if ($this->user->hasPermission('access', 'catalog/product')) {
+				$product[] = array(
+					'name'	   => $this->language->get('text_product'),
+					'href'     => $this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/product_option')) {
+				$product[] = array(
+					'name'	   => $this->language->get('text_product_option'),
+					'href'     => $this->url->link('catalog/product_option', 'user_token=' . $this->session->data['user_token']) ,
+					'children' => array()
+				);
+			}
+
+			if ($product) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_product'),
+					'href'     => '',
+					'children' => $product
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/recurring')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_recurring'),
+					'href'     => $this->url->link('catalog/recurring', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/filter')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_filter'),
+					'href'     => $this->url->link('catalog/filter', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			// Attributes
+			$attribute = array();
+
+			if ($this->user->hasPermission('access', 'catalog/attribute')) {
+				$attribute[] = array(
+					'name'     => $this->language->get('text_attribute'),
+					'href'     => $this->url->link('catalog/attribute', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/attribute_group')) {
+				$attribute[] = array(
+					'name'	   => $this->language->get('text_attribute_group'),
+					'href'     => $this->url->link('catalog/attribute_group', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($attribute) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_attribute'),
+					'href'     => '',
+					'children' => $attribute
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/option')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_option'),
+					'href'     => $this->url->link('catalog/option', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/manufacturer')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_manufacturer'),
+					'href'     => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/download')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_download'),
+					'href'     => $this->url->link('catalog/download', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/review')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_review'),
+					'href'     => $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/information')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_information'),
+					'href'     => $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+
+			if ($catalog) {
+				$data['menus'][] = array(
+					'id'       => 'menu-catalog',
+					'icon'	   => 'fa-tags',
+					'name'	   => $this->language->get('text_catalog'),
+					'href'     => '',
+					'children' => $catalog
+				);
+			}
 
 			//ANAGRAFICHE
 

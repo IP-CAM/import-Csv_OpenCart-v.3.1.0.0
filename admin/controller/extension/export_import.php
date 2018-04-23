@@ -50,6 +50,21 @@ class ControllerExtensionExportImport extends Controller {
         echo "Table Created.Go back to dashboard.";
     }
 
+    public function createCheckSumTable(){
+        $this->db->query(" CREATE TABLE `oc_checksums` (
+          `csv_id` varchar(255) NOT NULL,
+          `opencart_id` int(11) NOT NULL,
+          `opencart_table` varchar(20) NOT NULL,
+          `checksum_md5` varchar(32) NOT NULL,
+          `date_add` date NOT NULL,
+          `date_modified` date NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
+
+        echo "CheckSum Table created";
+
+    }
+
+    //find which of the files is being imported..Anagrafica articoli,clienti, agenti etc etc
 	public function upload() {
 		$this->load->language('extension/export_import');
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -71,6 +86,7 @@ class ControllerExtensionExportImport extends Controller {
 
 		$this->getForm();
 	}
+
 
 
 	protected function return_bytes($val)

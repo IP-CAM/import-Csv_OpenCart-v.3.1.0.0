@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ad1c88-24b6-4f9f-b48a-92e55cdbd1fa" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/language/en-gb/extension/module/anagrafica_agenti.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/model/extension/anagrafica_agenti.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/controller/common/column_left.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/common/column_left.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/controller/extension/export_import.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/extension/export_import.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/controller/extension/module/anagrafica_agenti.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/extension/module/anagrafica_agenti.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/language/en-gb/extension/export_import.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/language/en-gb/extension/export_import.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/view/template/extension/export_import.twig" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/template/extension/export_import.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/model/extension/export_import.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/model/extension/export_import.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/view/stylesheet/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/stylesheet/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/view/template/extension/module/first_module.twig" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/template/extension/module/first_module.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/view/template/extension/module/recentcustomers.twig" beforeDir="false" afterPath="$PROJECT_DIR$/admin/view/template/extension/module/recentcustomers.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,33 +20,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="column_left.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/controller/common/column_left.php">
+      <file leaf-file-name="product.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/controller/catalog/product.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="152" column="35" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
-              <folding>
-                <element signature="e#423#694#0#PHP" />
-                <element signature="e#703#713#0#PHP" />
-              </folding>
+            <state relative-caret-position="234">
+              <caret line="22" column="52" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anagrafica_agenti.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/controller/extension/module/anagrafica_agenti.php">
+      <file leaf-file-name="product.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/model/catalog/product.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="73" lean-forward="true" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="73" />
+            <state relative-caret-position="108">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anagrafica_agenti.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig">
+      <file leaf-file-name="export_import.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/model/extension/export_import.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="69" column="95" lean-forward="true" selection-start-line="69" selection-start-column="95" selection-end-line="69" selection-end-column="95" />
+            <state relative-caret-position="481">
+              <caret line="6127" lean-forward="true" selection-start-line="6127" selection-end-line="6127" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="export_import.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/controller/extension/export_import.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="541">
+              <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
             </state>
           </provider>
         </entry>
@@ -56,9 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>row</find>
-      <find>class</find>
-      <find>dashboard_</find>
       <find>_width</find>
       <find>secu</find>
       <find>text_no_results</find>
@@ -86,6 +87,9 @@
       <find>export_import_loading</find>
       <find>results</find>
       <find>anag</find>
+      <find>product</find>
+      <find>addProduct</find>
+      <find>importCsv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,7 +102,6 @@
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/admin/config.php" />
         <option value="$PROJECT_DIR$/admin/view/template/common/column_left.twig" />
-        <option value="$PROJECT_DIR$/admin/model/extension/export_import.php" />
         <option value="$PROJECT_DIR$/admin/controller/common/header.php" />
         <option value="$PROJECT_DIR$/admin/language/en-gb/common/header.php" />
         <option value="$PROJECT_DIR$/admin/view/template/common/header.twig" />
@@ -128,10 +131,11 @@
         <option value="$PROJECT_DIR$/admin/model/extension/anagrafica_agenti.php" />
         <option value="$PROJECT_DIR$/admin/language/en-gb/extension/module/anagrafica_agenti.php" />
         <option value="$PROJECT_DIR$/admin/controller/extension/module/anagrafica_agenti.php" />
-        <option value="$PROJECT_DIR$/admin/controller/common/column_left.php" />
         <option value="$PROJECT_DIR$/admin/view/template/extension/export_import.twig" />
         <option value="$PROJECT_DIR$/admin/language/en-gb/extension/export_import.php" />
         <option value="$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig" />
+        <option value="$PROJECT_DIR$/admin/controller/common/column_left.php" />
+        <option value="$PROJECT_DIR$/admin/model/extension/export_import.php" />
         <option value="$PROJECT_DIR$/admin/controller/extension/export_import.php" />
       </list>
     </option>
@@ -185,7 +189,14 @@
               <item name="opencart" type="b2602c69:ProjectViewProjectNode" />
               <item name="opencart" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="opencart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="opencart" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="extension" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -236,6 +247,8 @@
       <workItem from="1522933164262" duration="23558000" />
       <workItem from="1523348332423" duration="16726000" />
       <workItem from="1523431495840" duration="5811000" />
+      <workItem from="1523461534847" duration="48000" />
+      <workItem from="1524472348931" duration="3308000" />
     </task>
     <task id="LOCAL-00001" summary="Second Commit">
       <created>1523351524775</created>
@@ -269,31 +282,31 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46095000" />
+    <option name="totallyTimeSpent" value="49451000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18960752" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32948583" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19402985" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32948583" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,20 +325,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/view/template/design/layout_form.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1293">
-          <caret line="219" column="24" selection-start-line="219" selection-start-column="24" selection-end-line="219" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/common/content_new.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catalog/controller/common/content_new.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
@@ -502,13 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/model/extension/export_import.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="55" column="1" lean-forward="true" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/language/en-gb/extension/module/first_module.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -625,10 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="52" column="41" lean-forward="true" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
-          <folding>
-            <element signature="e#731#738#1#HTML" expanded="true" />
-            <element signature="e#936#943#1#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -636,42 +624,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1854">
           <caret line="199" column="16" lean-forward="true" selection-start-line="199" selection-start-column="16" selection-end-line="199" selection-end-column="16" />
-          <folding>
-            <element signature="n#getForm#0;n#ControllerUserUser#0;n#!!top" />
-            <element signature="n#validateForm#0;n#ControllerUserUser#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="69" column="95" lean-forward="true" selection-start-line="69" selection-start-column="95" selection-end-line="69" selection-end-column="95" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/controller/common/column_left.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="152" column="35" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
+        <state relative-caret-position="234">
+          <caret line="117" column="35" lean-forward="true" selection-start-line="117" selection-start-column="35" selection-end-line="117" selection-end-column="35" />
           <folding>
             <element signature="e#423#694#0#PHP" />
-            <element signature="e#703#713#0#PHP" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controller/extension/export_import.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/controller/extension/module/anagrafica_agenti.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="73" lean-forward="true" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="73" />
+        <state relative-caret-position="414">
+          <caret line="23" column="51" lean-forward="true" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/view/template/extension/module/anagrafica_agenti.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="69" column="95" selection-start-line="69" selection-start-column="95" selection-end-line="69" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controller/catalog/product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/model/catalog/product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/model/extension/export_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="6127" lean-forward="true" selection-start-line="6127" selection-end-line="6127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controller/extension/export_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>
