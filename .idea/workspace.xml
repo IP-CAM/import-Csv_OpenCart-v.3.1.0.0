@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ad1c88-24b6-4f9f-b48a-92e55cdbd1fa" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_agenti.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_articoli.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_catalogazione.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_categorie_classificazione.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_cliente.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_codici_iva.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_disponibilita.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_listini.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_magazzini.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_ordini.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_pagamenti.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_prezzi.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_scadenzario.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/controller/extension/ImportCsv.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/controller/extension/export_import.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/extension/export_import.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/controller/extension/ImportCsv.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/extension/ImportCsv.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,14 +13,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="ImportCsv.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/controller/extension/ImportCsv.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="326">
+              <caret line="68" column="13" lean-forward="true" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
               <folding>
                 <element signature="e#6#85#0#PHP" expanded="true" />
+                <element signature="n#create_slug#0;n#!!top" />
+                <element signature="n#importAnagraficaCategorieClassificazione#0;n#ControllerExtensionImportCsv#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -45,8 +31,8 @@
       <file leaf-file-name="export_import.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/controller/extension/export_import.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+            <state>
+              <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -54,8 +40,8 @@
       <file leaf-file-name="export_import.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/model/extension/export_import.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="6111" selection-start-line="6111" selection-end-line="6111" />
+            <state relative-caret-position="452">
+              <caret line="6128" lean-forward="true" selection-start-line="6127" selection-start-column="15" selection-end-line="6128" />
             </state>
           </provider>
         </entry>
@@ -64,10 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>secu</find>
-      <find>text_no_results</find>
-      <find>re</find>
-      <find>DIR</find>
       <find>getInstalled</find>
       <find>header</find>
       <find>hasPermission</find>
@@ -94,6 +76,10 @@
       <find>addProduct</find>
       <find>importCsv</find>
       <find>importCsvAnagraficaArticoli</find>
+      <find>retrieve_oc_id</find>
+      <find>$result_fetched_array</find>
+      <find>Anagra</find>
+      <find>oc_synch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,7 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,6 +170,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,7 +219,8 @@
       <workItem from="1523461534847" duration="48000" />
       <workItem from="1524472348931" duration="3308000" />
       <workItem from="1524516594732" duration="7691000" />
-      <workItem from="1525789327523" duration="5426000" />
+      <workItem from="1525789327523" duration="5607000" />
+      <workItem from="1525852046525" duration="22508000" />
     </task>
     <task id="LOCAL-00001" summary="Second Commit">
       <created>1523351524775</created>
@@ -277,17 +264,24 @@
       <option name="project" value="LOCAL" />
       <updated>1524736577330</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Csv Import Foreach File">
+      <created>1525795377839</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1525795377839</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64900000" />
+    <option name="totallyTimeSpent" value="87589000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1708126" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19181868" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32948583" />
@@ -351,6 +345,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/admin/model/extension/export_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109998">
+          <caret line="6111" selection-start-line="6111" selection-end-line="6111" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/model/setting/setting.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -667,36 +668,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Anagrafica_catalogazione.csv">
+    <entry file="file://$PROJECT_DIR$/Anagrafica_catalogazione.csv" />
+    <entry file="file://$PROJECT_DIR$/admin/controller/extension/export_import.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        <state>
+          <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/model/extension/export_import.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="6111" selection-start-line="6111" selection-end-line="6111" />
+        <state relative-caret-position="452">
+          <caret line="6128" lean-forward="true" selection-start-line="6127" selection-start-column="15" selection-end-line="6128" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controller/extension/export_import.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EsempiCSV/Anagrafica_agenti.csv">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/controller/extension/ImportCsv.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        <state relative-caret-position="326">
+          <caret line="68" column="13" lean-forward="true" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
           <folding>
             <element signature="e#6#85#0#PHP" expanded="true" />
+            <element signature="n#create_slug#0;n#!!top" />
+            <element signature="n#importAnagraficaCategorieClassificazione#0;n#ControllerExtensionImportCsv#0;n#!!top" />
           </folding>
         </state>
       </provider>
