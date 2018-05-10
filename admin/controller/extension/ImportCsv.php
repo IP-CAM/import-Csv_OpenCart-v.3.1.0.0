@@ -8,6 +8,20 @@
 
 class ControllerExtensionImportCsv extends Controller
 {
+    const ANAGRAFICA_AGENTI = '/var/www/html/opencart/EsempiCSV/Anagrafica_agenti.csv';
+    const ANAGRAFICA_ARTICOLI = '/var/www/html/opencart/EsempiCSV/Anagrafica_articoli.csv';
+    const ANAGRAFICA_CATALOGAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_catalogazione.csv';
+    const ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_categorie_classificazione.csv';
+    const ANAGRAFICA_CLIENTE = '/var/www/html/opencart/EsempiCSV/Anagrafica_cliente.csv';
+    const ANAGRAFICA_CODICI_IVA = '/var/www/html/opencart/EsempiCSV/Anagrafica_codici_iva.csv';
+    const ANAGRAFICA_DISPONIBILITA = '/var/www/html/opencart/EsempiCSV/Anagrafica_disponibilita.csv';
+    const ANAGRAFICA_LISTINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_listini.csv';
+    const ANAGRAFICA_MAGAZZINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_magazzini.csv';
+    const ANAGRAFICA_ORDINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_ordini.csv';
+    const ANAGRAFICA_PAGAMENTI = '/var/www/html/opencart/EsempiCSV/Anagrafica_pagamenti.csv';
+    const ANAGRAFICA_PREZZI = '/var/www/html/opencart/EsempiCSV/Anagrafica_prezzi.csv';
+    const ANAGRAFICA_SCANDENZARIO = '/var/www/html/opencart/EsempiCSV/Anagrafica_scandenzario.csv';
+
     public function index(){
 
         $fileList = glob('/var/www/html/opencart/EsempiCSV/*.csv');
@@ -17,31 +31,31 @@ class ControllerExtensionImportCsv extends Controller
             //Simply print all the files out onto the screen.
             if (is_file($filename)){
 
-             if($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_agenti.csv"){
+             if($filename == self::ANAGRAFICA_AGENTI){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_articoli.csv"){
-                 var_dump($this->importAnagraficaArticoli());die;
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_catalogazione.csv"){
+             }elseif ($filename == self::ANAGRAFICA_ARTICOLI){
+//                 var_dump($this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI));die;
+             }elseif ($filename == self::ANAGRAFICA_CATALOGAZIONE){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_categorie_classificazione.csv"){
-                 var_dump($this->importAnagraficaCategorieClassificazione());
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_cliente.csv"){
+             }elseif ($filename == self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE){
+//                 var_dump($this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE));
+             }elseif ($filename == self::ANAGRAFICA_CLIENTE){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_codici_iva.csv"){
+             }elseif ($filename == self::ANAGRAFICA_CODICI_IVA){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_disponibilita.csv"){
+             }elseif ($filename == self::ANAGRAFICA_DISPONIBILITA){
+//                 var_dump($this->importAnagraficaDisponibilita(self::ANAGRAFICA_DISPONIBILITA));
+             }elseif ($filename == self::ANAGRAFICA_LISTINI){
+//               var_dump($this->importAnagraficaListini(self::ANAGRAFICA_LISTINI));die;
+             }elseif ($filename == self::ANAGRAFICA_MAGAZZINI){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_listini.csv"){
-               var_dump($this->importAnagraficaListini());die;
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_magazzini.csv"){
+             }elseif ($filename == self::ANAGRAFICA_ORDINI){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_ordini.csv"){
+             }elseif ($filename == self::ANAGRAFICA_PAGAMENTI){
 
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_pagamenti.csv"){
-
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_prezzi.csv"){
-
-             }elseif ($filename == "/var/www/html/opencart/EsempiCSV/Anagrafica_scandenzario.csv"){
+             }elseif ($filename == self::ANAGRAFICA_PREZZI){
+                 var_dump($this->importAnagraficaPrezzi(self::ANAGRAFICA_PREZZI));die;
+             }elseif ($filename == self::ANAGRAFICA_SCANDENZARIO){
                  var_dump("Anagrafica_scandenzario");
              }
             }
@@ -52,25 +66,50 @@ class ControllerExtensionImportCsv extends Controller
 
 
     //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv($nome_file)
+    function elabora_csv($filename, $delimiter=',',  $enclosure='"', $escape = '\\')
     {
-        $csvFile = fopen($nome_file, 'r');
-        $csv = array_map('str_getcsv', file($nome_file));
-        $headers = $csv[0];
+        $rows = file($filename);
+        $header = array_shift($rows); //get the header out
+        $header = explode(";", $header);
+        $final_array = array();
+        foreach ($rows as $row) {
+            $row = explode(";", $row);
+
+            $final_array[] = array($header[0] => $row[0], $header[1] => $row[1], $header[2] => $row[2]);
+        }
+        return $final_array;
+    }
+
+    //restituire un array di righe dal
+    public function readCsvAnagraficaPrezzi($csvfile){
+
+        $csvFile = fopen($csvfile, 'r');
+        $newRow = [];
         fgetcsv($csvFile);// skip the first row of the csv file
-        $rowsWithKeys = [];
         while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
 
-            $newRow = [];
-            $splitHeaders = explode(";", $headers[0]);
+            $rowsWithKeys = [
+                "codice articolo" =>$line[0],
+                "codice listino" => $line[1],
+                "prezzo" => $line[2],
+                "unita vendita" => $line[3],
+                "fattore vendita" => $line[4],
+                "note" => $line[5],
+                "sconto" => $line[6],
+                "sconto_max" => $line[7],
+                "stato" => $line[8],
+                "ultima modifica" => $line[9],
+                "flag fedelta" => $line[10],
+                "flag sconto" => $line[11],
+                "flag" => $line[12]
 
-            foreach ($splitHeaders as $k => $key) {
-                $newRow[$key] = $line[$k];
-            }
-            $rowsWithKeys[] = $newRow;
+            ];
+          $newRow[] = $rowsWithKeys;
+
         }
         fclose($csvFile);
-        return $rowsWithKeys;
+        return $newRow;
+
     }
 
     //funzione per leggere i CSV e restiture un array di righe
@@ -86,7 +125,7 @@ class ControllerExtensionImportCsv extends Controller
             $splitHeaders = explode(";", $headers[0]);
 
             foreach ($splitHeaders as $k => $key) {
-                $newRow[$key] = $line[$k];
+                $newRow[$key] = $line[intval($k)];
             }
             $rowsWithKeys[] = $newRow;
         }
@@ -208,14 +247,14 @@ class ControllerExtensionImportCsv extends Controller
     }
 
     //elaborazione di Anagrafica_listini.csv
-    public function importAnagraficaListini(){
+    public function importAnagraficaListini($file){
 
-        $righe = $this->elabora_csv_1('/var/www/html/opencart/EsempiCSV/Anagrafica_listini.csv');
+        $righe = $this->elabora_csv_1($file);
         $array_customer_group_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei listini e come valore il customer_group_id in oc_customer_group
         foreach($righe as $key => $row){
             $id_opencart_item = $this->retrieve_oc_id($row["codice"],'oc_customer_group',$row);
             if ($id_opencart_item<0) {
-                $array_customer_group_inseriti[$row["codice"]] = abs($id_synch); //nothing to update
+                $array_customer_group_inseriti[$row["codice"]] = abs($id_opencart_item); //nothing to update
             }
             else {
                 if ($id_opencart_item==0) {
@@ -240,8 +279,9 @@ class ControllerExtensionImportCsv extends Controller
     }
 
     //elaborazione di Anagrafica_categorie_classificazione.csv
-    public function importAnagraficaCategorieClassificazione(){
-        $righe=$this->elabora_csv_1('/var/www/html/opencart/EsempiCSV/Anagrafica_categorie_classificazione.csv');
+    public function importAnagraficaCategorieClassificazione($file){
+        $righe=$this->elabora_csv_1($file);
+//        var_dump($righe);die;
         $array_category_inserite=array(); //array che come chiave avrà l'ID nel CSV delle categorie e come valore il category_id in oc_category
 
         foreach($righe as $key => $row){
@@ -353,9 +393,10 @@ class ControllerExtensionImportCsv extends Controller
     }
 
    //elaborazione di Anagrafica_articoli.csv
-    public function importAnagraficaArticoli(){
+    public function importAnagraficaArticoli($file){
 
-        $righe=$this->elabora_csv('/var/www/html/opencart/EsempiCSV/Anagrafica_articoli.csv');
+        $righe=$this->elabora_csv($file);
+        var_dump($righe);die;
         $array_prodotti_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei prodotti e come valore il product_id in oc_product
         foreach($righe as $key => $row) {
             var_dump($row);die;
@@ -450,4 +491,66 @@ class ControllerExtensionImportCsv extends Controller
         }
     }
 
+    //elaborazione di Anagrafica_disponibilita.csv
+    public function importAnagraficaDisponibilita($file){
+        $query_update_on_products=array();
+        $array_prodotti_inseriti=array();
+        $righe=$this->elabora_csv($file);
+        foreach($righe as $key => $row){
+
+            if (isset($array_prodotti_inseriti[$row['codice articolo']])) {
+                $quantity=intval($row['inventario']);
+                if ($quantity>0) {
+                    $stock_status_id=7;//Disponibile
+                }
+                elseif (intval($row['ordinato fornitore'])>0) {
+                    $stock_status_id=6;//In 2-3 Giorni
+                }
+                else {
+                    $stock_status_id=5;//Non disponibile
+                }
+
+                $query_update_on_products[$array_prodotti_inseriti[$row['codice articolo']]]="`quantity`=".$row['inventario'].",`stock_status_id`=".$stock_status_id;
+
+            }
+        }
+    }
+
+//    //elaborazione di Anagrafica_prezzi.csv
+    public function importAnagraficaPrezzi($file){
+//
+        $query_update_on_products=array();
+        $righe= $this->elabora_csv($file);
+        var_dump($righe);die;
+
+        $array_prodotti_inseriti = [];
+        $array_customer_group_inseriti = [];
+        $listino_di_default="LIS_50_0";
+        foreach($righe as $key => $row){
+            var_dump($row['codice articolo']);die;
+            $codice_articolo = $array_prodotti_inseriti[$row['codice articolo']];
+            $codice_listino = $row['codice listino'];
+
+            if ((isset($codice_listino) &&  $codice_listino == $listino_di_default)) {
+
+			if (isset($query_update_on_products[$codice_articolo])) {
+                $query_update_on_products[$codice_articolo]=",";
+            }
+            $query_update_on_products[$array_prodotti_inseriti[$row['codice articolo']].="`price`=".$row['prezzo']];
+
+        }
+        elseif (isset($array_customer_group_inseriti[$row['codice listino']])) { //aggiorniamo i prezzi per gli altri clienti
+			//aggiorniamo l'associazione allo store
+			$sql_to_execute=$this->db->query("DELETE FROM `oc_product_discount`  WHERE `product_id`=".$array_prodotti_inseriti[$row['codice articolo']]." AND `customer_group_id`=".$array_customer_group_inseriti[$row['codice listino']]);
+
+            $sql_to_execute=$this->db->query("INSERT INTO `oc_product_to_store` (`product_id`, `customer_group_id`) VALUES  (".$array_prodotti_inseriti[$row['codice articolo']].", ".$array_customer_group_inseriti[$row['codice listino']].",".$row['prezzo'].")");
+        }
+
+        }
+
+        foreach($query_update_on_products as $key => $row){
+            $sql_to_execute  =$this->db->query("UPDATE `oc_product` SET ".$row." where `product_id`=".$key);
+
+        }
+    }
 }
