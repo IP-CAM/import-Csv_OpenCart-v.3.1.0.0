@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="50ad1c88-24b6-4f9f-b48a-92e55cdbd1fa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EsempiCSV/Anagrafica_prezzi.csv" beforeDir="false" afterPath="$PROJECT_DIR$/EsempiCSV/Anagrafica_prezzi.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/controller/extension/ImportCsv.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controller/extension/ImportCsv.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +16,8 @@
       <file leaf-file-name="ImportCsv.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/controller/extension/ImportCsv.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
+            <state relative-caret-position="432">
+              <caret line="85" column="40" lean-forward="true" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
               <folding>
                 <element signature="e#6#85#0#PHP" expanded="true" />
                 <element signature="n#create_slug#0;n#!!top" />
@@ -226,7 +224,7 @@
       <workItem from="1524472348931" duration="3308000" />
       <workItem from="1524516594732" duration="7691000" />
       <workItem from="1525789327523" duration="5607000" />
-      <workItem from="1525852046525" duration="40033000" />
+      <workItem from="1525852046525" duration="40067000" />
     </task>
     <task id="LOCAL-00001" summary="Second Commit">
       <created>1523351524775</created>
@@ -284,11 +282,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525881619440</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Csv Import Foreach File">
+      <created>1525968016045</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525968016045</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105114000" />
+    <option name="totallyTimeSpent" value="105148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -690,8 +695,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/controller/extension/ImportCsv.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
+        <state relative-caret-position="432">
+          <caret line="85" column="40" lean-forward="true" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
           <folding>
             <element signature="e#6#85#0#PHP" expanded="true" />
             <element signature="n#create_slug#0;n#!!top" />
