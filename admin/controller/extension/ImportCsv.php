@@ -36,11 +36,11 @@ class ControllerExtensionImportCsv extends Controller
              }elseif ($filename == self::ANAGRAFICA_ARTICOLI){
 //                 var_dump($this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI));die;
              }elseif ($filename == self::ANAGRAFICA_CATALOGAZIONE){
-
+//                 var_dump($this->importAnagraficaCatalogazione(self::ANAGRAFICA_CATALOGAZIONE));die;
              }elseif ($filename == self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE){
 //                 var_dump($this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE));
              }elseif ($filename == self::ANAGRAFICA_CLIENTE){
-
+                 var_dump($this->importAnagraficaCliente(self::ANAGRAFICA_CLIENTE));die;
              }elseif ($filename == self::ANAGRAFICA_CODICI_IVA){
 
              }elseif ($filename == self::ANAGRAFICA_DISPONIBILITA){
@@ -66,50 +66,26 @@ class ControllerExtensionImportCsv extends Controller
 
 
     //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv($filename, $delimiter=',',  $enclosure='"', $escape = '\\')
+    function elabora_csv($filename)
     {
-        $rows = file($filename);
-        $header = array_shift($rows); //get the header out
-        $header = explode(";", $header);
-        $final_array = array();
-        foreach ($rows as $row) {
-            $row = explode(";", $row);
+        $csv = array();
 
-            $final_array[] = array($header[0] => $row[0], $header[1] => $row[1], $header[2] => $row[2]);
-        }
-        return $final_array;
-    }
+        $in = fopen($filename, "r");
+        $csvF = array_map('str_getcsv', file($filename));
+        $headers = $csvF[0]; //skip the headers
+        fgetcsv($in);// skip the first row of the csv file
+        $rowsWithKeys = [];
+            while (($result = fgetcsv($in, 1000, ";")) !== false) {
+                    $splitHeaders = explode(";", $headers[0]);
 
-    //restituire un array di righe dal
-    public function readCsvAnagraficaPrezzi($csvfile){
+                    foreach ($splitHeaders as $k => $key) {
+                        $csv[$key] = $result[$k];
+                    }
+                    $rowsWithKeys[] = $csv;
+            }
 
-        $csvFile = fopen($csvfile, 'r');
-        $newRow = [];
-        fgetcsv($csvFile);// skip the first row of the csv file
-        while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
-
-            $rowsWithKeys = [
-                "codice articolo" =>$line[0],
-                "codice listino" => $line[1],
-                "prezzo" => $line[2],
-                "unita vendita" => $line[3],
-                "fattore vendita" => $line[4],
-                "note" => $line[5],
-                "sconto" => $line[6],
-                "sconto_max" => $line[7],
-                "stato" => $line[8],
-                "ultima modifica" => $line[9],
-                "flag fedelta" => $line[10],
-                "flag sconto" => $line[11],
-                "flag" => $line[12]
-
-            ];
-          $newRow[] = $rowsWithKeys;
-
-        }
-        fclose($csvFile);
-        return $newRow;
-
+            fclose($in);
+            return $rowsWithKeys;
     }
 
     //funzione per leggere i CSV e restiture un array di righe
@@ -550,6 +526,101 @@ class ControllerExtensionImportCsv extends Controller
 
         foreach($query_update_on_products as $key => $row){
             $sql_to_execute  =$this->db->query("UPDATE `oc_product` SET ".$row." where `product_id`=".$key);
+
+        }
+    }
+
+    //elaborazione di Anagrafica_catalogazione.csv
+
+    public function importAnagraficaCatalogazione($filename){
+
+        $righe=$this->elabora_csv($filename);
+        $array_prodotti_inseriti=[];
+        $array_category_inserite=[];
+        foreach($righe as $key => $row){
+            if ((isset($array_prodotti_inseriti[$row['codice articolo']])) && (isset($array_category_inserite[$row['Entita2']]))) {
+                $this->db->query("DELETE FROM `oc_product_to_category`  WHERE `product_id`=".$array_prodotti_inseriti[$row['codice articolo']]);
+
+          $this->db->query("INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES (".$array_prodotti_inseriti[$row['codice articolo']].", ".$array_category_inserite[$row['Entita2']].")");
+
+            }
+        }
+    }
+
+    //elaborazione di Anagrafica_cliente.csv
+    public function importAnagraficaCliente($filename){
+        $righe=$this->elabora_csv($filename);
+        $array_clienti_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei clienti e come valore il customer_id in oc_customer
+        $array_customer_group_inseriti = [];
+
+        foreach($righe as $key => $row){
+            $id_opencart_item=$this->retrieve_oc_id($row["codice"],'oc_customer',$row);
+            $listino_di_default="LIS_50_0";
+            if ($id_opencart_item<0) {
+                $array_clienti_inseriti[$row["codice"]]=$row["codice"]; //nothing to update
+            }
+            else {
+                if (isset($array_customer_group_inseriti[$row['Codice listino']])) {
+                    $customer_group_id=$array_customer_group_inseriti[$row['Codice listino']];
+                }
+                else {
+                    $customer_group_id=$listino_di_default;
+                }
+                $firstname=addslashes($row["ragione sociale"]);
+                $lastname=addslashes($row["ragione sociale"]);
+                $company=addslashes($row["ragione sociale"]);
+                $address_1=addslashes($row["via"]);
+                $email=$row['Email'];
+                if ($email=='') $email=$row["codice"].'@sweeping.it';
+                $telephone=$row['telefono'];
+                $fax=$row['fax'];
+                $cap=$row['cap'];
+                $password="3a4bb0b51fee300cdb19370cab4a434f02ed818c"; //mvtech.2018
+                $salt='f77B00sKY';
+                $date_insert=date('Y-m-d H:i:s');
+
+                //recuperiamo oc_zone
+                $sql="select * from oc_zone where UPPER(code)='".strtoupper($row['Prov'])."'";
+                $query = $this->db->query($sql);
+                if ($query->num_rows==0) { //si tratta di un nuovo prodotto e quindi va fatto l'inserimento
+
+                    $zone_id=3924; //Roma
+                    $country_id=105;
+                }
+                else {
+                    foreach ($query->rows as $result) {
+                        $zone_id=$result['zone_id'];
+                        $country_id=$result['country_id'];
+                    }
+                    $city=addslashes($row['Citta']);
+
+                    if ($id_opencart_item==0) {
+
+//                     $this->db->query("INSERT INTO `oc_customer` (`customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `custom_field`, `ip`, `status`, `safe`, `token`, `code`, `date_added`) VALUES (".$customer_group_id.", 0, 2, '".$firstname."', '".$lastname."', '".$email."', '".$telephone."', '".$fax."', '".$password."', '".$salt."', NULL, NULL, 0, 0, '', '172.17.0.29', 1, 0, NULL, NULL, '".$date_insert."')");
+
+                        $sql_to_execute = $this->db->query("INSERT INTO  `oc_customer` (  `customer_group_id` ) VALUES ( ".$customer_group_id." )");
+                        var_dump($sql_to_execute);die;
+                        $sql=$this->db->query("select product_id from oc_product ORDER BY product_id DESC LIMIT 1");
+                        $result_fetched_array=$sql->rows;//variabile che contiene l'array della query
+                        $id_opencart_item=$result_fetched_array[0]['product_id'];
+
+
+                    }
+                    else {
+                       $this->db->query("UPDATE `oc_address` SET `firstname`='".$firstname."',`lastname`='".$lastname."',`company`='".$company."',`address_1`='".$address_1."',`address_2`='',	`city`='".$city."',	`postcode`='".$cap."',`country_id`=".$country_id.",`zone_id`=".$zone_id." where `customer_id`=".$id_opencart_item);
+                    }
+                    $array_clienti_inseriti[$row["codice"]]=$id_opencart_item;
+                    $this->sync_checksums($row["codice"],$id_opencart_item,'oc_customer',$row);
+
+                    //eseguiamo prima l'address_id
+                    $this->db->query("DELETE FROM `oc_address`  WHERE `customer_id`=".$id_opencart_item);
+
+                    $sql_to_execute="INSERT INTO `oc_address` (`customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`) VALUES (".$id_opencart_item.", '".$firstname."', '".$lastname."', '".$company."', '".$address_1."', '', '".$city."', '".$cap."', ".$country_id.", ".$zone_id.", '')";
+                   $this->db->query($sql);
+
+
+                }
+            }
 
         }
     }
