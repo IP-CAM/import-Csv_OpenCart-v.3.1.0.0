@@ -40,7 +40,7 @@ class ControllerExtensionImportCsv extends Controller
              }elseif ($filename == self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE){
 //                 var_dump($this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE));
              }elseif ($filename == self::ANAGRAFICA_CLIENTE){
-                 var_dump($this->importAnagraficaCliente(self::ANAGRAFICA_CLIENTE));die;
+//                 var_dump($this->importAnagraficaCliente(self::ANAGRAFICA_CLIENTE));die;
              }elseif ($filename == self::ANAGRAFICA_CODICI_IVA){
 
              }elseif ($filename == self::ANAGRAFICA_DISPONIBILITA){
@@ -69,24 +69,22 @@ class ControllerExtensionImportCsv extends Controller
     function elabora_csv($filename)
     {
         $csv = array();
-
-        $in = fopen($filename, "r");
-        $csvF = array_map('str_getcsv', file($filename));
-        $headers = $csvF[0]; //skip the headers
-        fgetcsv($in);// skip the first row of the csv file
         $rowsWithKeys = [];
-            while (($result = fgetcsv($in, 1000, ";")) !== false) {
-                    $splitHeaders = explode(";", $headers[0]);
+        if (($handle = fopen($filename, "r")) !== FALSE) {
+            $headers = fgetcsv($handle);// skip the first row of the csv file
+            while (($result = fgetcsv($handle, 1000, ",")) !== false)  {
 
-                    foreach ($splitHeaders as $k => $key) {
-                        $csv[$key] = $result[$k];
-                    }
-                    $rowsWithKeys[] = $csv;
+                var_dump($result);die;
+                foreach ($headers as $k => $key) {
+                    $csv[$key] = (empty($result[$k])) ? 0 : $result[$k];
+                }
+                $rowsWithKeys[] = $csv;
             }
-
-            fclose($in);
+            fclose($handle);
             return $rowsWithKeys;
+        }
     }
+
 
     //funzione per leggere i CSV e restiture un array di righe
     function elabora_csv_1($nome_file)
@@ -616,9 +614,7 @@ class ControllerExtensionImportCsv extends Controller
                     $this->db->query("DELETE FROM `oc_address`  WHERE `customer_id`=".$id_opencart_item);
 
                     $sql_to_execute="INSERT INTO `oc_address` (`customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`) VALUES (".$id_opencart_item.", '".$firstname."', '".$lastname."', '".$company."', '".$address_1."', '', '".$city."', '".$cap."', ".$country_id.", ".$zone_id.", '')";
-                   $this->db->query($sql);
-
-
+                   $this->db->query($sql_to_execute);
                 }
             }
 
