@@ -34,11 +34,11 @@ class ControllerExtensionImportCsv extends Controller
              if($filename == self::ANAGRAFICA_AGENTI){
 
              }elseif ($filename == self::ANAGRAFICA_ARTICOLI){
-//                 var_dump($this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI));die;
+                 var_dump($this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI));die;
              }elseif ($filename == self::ANAGRAFICA_CATALOGAZIONE){
 //                 var_dump($this->importAnagraficaCatalogazione(self::ANAGRAFICA_CATALOGAZIONE));die;
              }elseif ($filename == self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE){
-//                 var_dump($this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE));
+                 var_dump($this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE));
              }elseif ($filename == self::ANAGRAFICA_CLIENTE){
 //                 var_dump($this->importAnagraficaCliente(self::ANAGRAFICA_CLIENTE));die;
              }elseif ($filename == self::ANAGRAFICA_CODICI_IVA){
@@ -46,7 +46,7 @@ class ControllerExtensionImportCsv extends Controller
              }elseif ($filename == self::ANAGRAFICA_DISPONIBILITA){
 //                 var_dump($this->importAnagraficaDisponibilita(self::ANAGRAFICA_DISPONIBILITA));
              }elseif ($filename == self::ANAGRAFICA_LISTINI){
-//               var_dump($this->importAnagraficaListini(self::ANAGRAFICA_LISTINI));die;
+               var_dump($this->importAnagraficaListini(self::ANAGRAFICA_LISTINI));die;
              }elseif ($filename == self::ANAGRAFICA_MAGAZZINI){
 
              }elseif ($filename == self::ANAGRAFICA_ORDINI){
@@ -66,19 +66,34 @@ class ControllerExtensionImportCsv extends Controller
 
 
     //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv($filename)
+    function elabora_csv_prezzi($filename)
     {
+        ini_set('memory_limit', '512M');
+        ini_set('max_execution_time', '180');
         $csv = array();
         $rowsWithKeys = [];
         if (($handle = fopen($filename, "r")) !== FALSE) {
             $headers = fgetcsv($handle);// skip the first row of the csv file
-            while (($result = fgetcsv($handle, 1000, ",")) !== false)  {
+            $headers = explode(";", $headers[0]);
+            while (($result = fgetcsv($handle, 1000, ";")) !== false)  {
 
-                var_dump($result);die;
-                foreach ($headers as $k => $key) {
-                    $csv[$key] = (empty($result[$k])) ? 0 : $result[$k];
-                }
+                    $csv = [
+                        $headers[0] => $result[0],
+                        $headers[1] => $result[1],
+                        $headers[2] => floatval(str_replace(",",".",$result[2])),
+                        $headers[3] => $result[3],
+                        $headers[4] => $result[4],
+                        $headers[5] => $result[5],
+                        $headers[6] => $result[6],
+                        $headers[7] => $result[7],
+                        $headers[8] => $result[8],
+                        $headers[9] => $result[9],
+                        $headers[10] => $result[10],
+                        $headers[11] => $result[11]
+                    ];
+
                 $rowsWithKeys[] = $csv;
+
             }
             fclose($handle);
             return $rowsWithKeys;
@@ -99,13 +114,37 @@ class ControllerExtensionImportCsv extends Controller
             $splitHeaders = explode(";", $headers[0]);
 
             foreach ($splitHeaders as $k => $key) {
-                $newRow[$key] = $line[intval($k)];
+                $newRow[$key] = $line[$k];
             }
             $rowsWithKeys[] = $newRow;
         }
         fclose($csvFile);
         return $rowsWithKeys;
     }
+
+//    //funzione per leggere i CSV e restiture un array di righe
+    function elabora_csv_articoli($filename,$enclosure="'", $escapestring="'"){
+
+        ini_set('memory_limit', '512M');
+        ini_set('max_execution_time', '180');
+        $rowsWithKeys = [];
+
+        if (($handle = fopen($filename, "r")) !== FALSE) {
+            $headers = fgetcsv($handle);// skip the first row of the csv file
+            $splitHeaders = explode(";", $headers[0]);
+        while(($line = fgetcsv($handle, 1000, ";",$enclosure, $escapestring)) !== FALSE){
+
+            $newRow = [];
+            foreach ($splitHeaders as $k => $key) {
+                $newRow[$key] = $line[$k];
+            }
+            $rowsWithKeys[] = $newRow;
+        }
+
+       fclose($handle);
+       return $rowsWithKeys;
+       }
+   }
 
 
    //la funzione restituisce 0 se è da fare una insert, -1 se i valori sono già presenti invariati nel DB, >0, ovvero l'ID della tabella da modificare
@@ -226,7 +265,9 @@ class ControllerExtensionImportCsv extends Controller
         $righe = $this->elabora_csv_1($file);
         $array_customer_group_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei listini e come valore il customer_group_id in oc_customer_group
         foreach($righe as $key => $row){
+
             $id_opencart_item = $this->retrieve_oc_id($row["codice"],'oc_customer_group',$row);
+
             if ($id_opencart_item<0) {
                 $array_customer_group_inseriti[$row["codice"]] = abs($id_opencart_item); //nothing to update
             }
@@ -240,7 +281,7 @@ class ControllerExtensionImportCsv extends Controller
                     $result_fetched_array=$sql->rows;//variabile che contiene l'array della query
                     $id_opencart_item = $result_fetched_array[0]['customer_group_id'];
 
-                    $sql_to_execute= $this->db->query("INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES (".$id_opencart_item.", 2, '".addslashes($row['codice'])."', '".addslashes($row['descrizione'])."')");
+                     $this->db->query("INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES (".$id_opencart_item.", 2, '".addslashes($row['codice'])."', '".addslashes($row['descrizione'])."')");
 
                 }
 
@@ -255,12 +296,12 @@ class ControllerExtensionImportCsv extends Controller
     //elaborazione di Anagrafica_categorie_classificazione.csv
     public function importAnagraficaCategorieClassificazione($file){
         $righe=$this->elabora_csv_1($file);
-//        var_dump($righe);die;
         $array_category_inserite=array(); //array che come chiave avrà l'ID nel CSV delle categorie e come valore il category_id in oc_category
-
+        $parent_category_id = 0;
         foreach($righe as $key => $row){
 
             $id_opencart_item=$this->retrieve_oc_id($row["codice categoria"],'oc_category',$row);
+
             if ($id_opencart_item < 0) {
                 $array_category_inserite[$row["codice categoria"]]=$id_opencart_item; //nothing to update
             }
@@ -285,25 +326,27 @@ class ControllerExtensionImportCsv extends Controller
                     $sql = $this->db->query("SELECT oc_id from oc_synch where oc_id=".$parent_category_csvid." and module='Category' LIMIT 1");
 
                     $result_fetched_array_parent=$sql->rows;//variabile che contiene l'array della query
+//                    $parent_category_id=$result_fetched_array_parent[0]['oc_id'];
+                    $parent_category_id = 0;
 
-                    $parent_category_id=$result_fetched_array_parent[0]['oc_id'];
                 }
 
                  $data_update = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $row['ultima modifica'])));
 
                 if ($id_opencart_item == 0) {
-                    $sql_to_execute=$this->db->query("INSERT INTO `oc_category` ( `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`, `sorting`, `viewtype`, `itemsperpage`, `showviewtype`, `showsorting`, `showitemsperpage`) VALUES ( '', ".$parent_category_id.", 0, 2, 2, ".$category_status.", '".$data_update."', '".$data_update."', 1, 1, 15, 0, 0, 0)");
+                    $this->db->query("INSERT INTO `oc_category` ( `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`, `sorting`, `viewtype`, `itemsperpage`, `showviewtype`, `showsorting`, `showitemsperpage`) VALUES ( '', ".$parent_category_id.", 0, 2, 2, ".$category_status.", '".$data_update."', '".$data_update."', 1, 1, 15, 0, 0, 0)");
 
                     $sql=$this->db->query("select category_id from oc_category ORDER BY category_id DESC LIMIT 1");
                     $result_fetched_array=$sql->rows;//variabile che contiene l'array della query
                     $id_opencart_item=$result_fetched_array[0]['category_id'];
-
                 }
                 else {
-                    $sql_to_execute=$this->db->query("UPDATE `oc_category` SET `parent_id`=".$parent_category_id.", `status`=".$category_status.", `date_modified`='".$data_update."' where `category_id`=".$id_opencart_item);
+
+                    $this->db->query("UPDATE `oc_category` SET `parent_id`=".$parent_category_id.", `status`=".$category_status.", `date_modified`='".$data_update."' where `category_id`=".$id_opencart_item);
                 }
 
                 $array_category_inserite[$row["codice categoria"]]=$id_opencart_item;
+
                 $this->sync_checksums($row["codice categoria"],$id_opencart_item,'oc_category',$row);
 
                 //aggiungiamo una voce in oc_category_path
@@ -352,7 +395,7 @@ class ControllerExtensionImportCsv extends Controller
                 $slug=$this->create_slug($row["descrizione categoria"]);
 
                 //controlliamo prima l'univocità dello slug_altrimenti gli appendiamo l'id della categoria
-                $sql=$this->db->query("SELECT * from oc_seo_url where keywork='".$slug."' LIMIT 1");
+                $sql=$this->db->query("SELECT * from oc_seo_url where keyword='".$slug."' LIMIT 1");
 
                 $result_fetched_array_seo_url=$sql->rows;//variabile che contiene l'array della query
 
@@ -369,11 +412,11 @@ class ControllerExtensionImportCsv extends Controller
    //elaborazione di Anagrafica_articoli.csv
     public function importAnagraficaArticoli($file){
 
-        $righe=$this->elabora_csv($file);
-        var_dump($righe);die;
+        $righe=$this->elabora_csv_articoli($file);
+
         $array_prodotti_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei prodotti e come valore il product_id in oc_product
         foreach($righe as $key => $row) {
-            var_dump($row);die;
+
             $id_opencart_item = $this->retrieve_oc_id($row["codice"], 'oc_product', $row);
             if ($id_opencart_item < 0) {
                 $array_prodotti_inseriti[$row["codice"]] = $id_opencart_item; //nothing to update
@@ -397,10 +440,9 @@ class ControllerExtensionImportCsv extends Controller
 
                     $this->db->query($sql_to_execute);
 
-                    $sql = "select product_id from oc_product ORDER BY product_id DESC LIMIT 1";
-                    $this->db->query($sql);
-                    $result_fetched_array = [];//variabile che contiene l'array della query
-                    $id_opencart_item = $result_fetched_array['product_id'];
+                    $sql = $this->db->query("select product_id from oc_product ORDER BY product_id DESC LIMIT 1");
+                    $result_fetched_array=$sql->rows;//variabile che contiene l'array della query
+                    $id_opencart_item = $result_fetched_array[0]['product_id'];
 
 
                     $sql_to_execute = "INSERT INTO `oc_product_image` (`product_id`, `image`, `sort_order`) VALUES (" . $id_opencart_item . ", 'catalog/" . $row["codice"] . ".jpg', 0)";
@@ -493,38 +535,35 @@ class ControllerExtensionImportCsv extends Controller
 //    //elaborazione di Anagrafica_prezzi.csv
     public function importAnagraficaPrezzi($file){
 //
-        $query_update_on_products=array();
-        $righe= $this->elabora_csv($file);
-        var_dump($righe);die;
-
-        $array_prodotti_inseriti = [];
-        $array_customer_group_inseriti = [];
+        $righe=$this->elabora_csv_prezzi($file);
         $listino_di_default="LIS_50_0";
+        $array_prodotti_inseriti = [];
+        $query_update_on_products = [];
+        $array_customer_group_inseriti = [];
         foreach($righe as $key => $row){
-            var_dump($row['codice articolo']);die;
-            $codice_articolo = $array_prodotti_inseriti[$row['codice articolo']];
-            $codice_listino = $row['codice listino'];
+            if (isset($array_prodotti_inseriti[$row['codice articolo']]) && ($row['codice listino']==$listino_di_default)) {
 
-            if ((isset($codice_listino) &&  $codice_listino == $listino_di_default)) {
 
-			if (isset($query_update_on_products[$codice_articolo])) {
-                $query_update_on_products[$codice_articolo]=",";
+			if (isset($query_update_on_products[$array_prodotti_inseriti[$row['codice articolo']]])) {
+                $query_update_on_products[$array_prodotti_inseriti[$row['codice articolo']]]=",";
             }
             $query_update_on_products[$array_prodotti_inseriti[$row['codice articolo']].="`price`=".$row['prezzo']];
-
         }
         elseif (isset($array_customer_group_inseriti[$row['codice listino']])) { //aggiorniamo i prezzi per gli altri clienti
 			//aggiorniamo l'associazione allo store
-			$sql_to_execute=$this->db->query("DELETE FROM `oc_product_discount`  WHERE `product_id`=".$array_prodotti_inseriti[$row['codice articolo']]." AND `customer_group_id`=".$array_customer_group_inseriti[$row['codice listino']]);
+			$sql_to_execute="DELETE FROM `oc_product_discount`  WHERE `product_id`=".$array_prodotti_inseriti[$row['codice articolo']]." AND `customer_group_id`=".$array_customer_group_inseriti[$row['codice listino']];
+            $this->db->query($sql_to_execute);
 
-            $sql_to_execute=$this->db->query("INSERT INTO `oc_product_to_store` (`product_id`, `customer_group_id`) VALUES  (".$array_prodotti_inseriti[$row['codice articolo']].", ".$array_customer_group_inseriti[$row['codice listino']].",".$row['prezzo'].")");
+            $sql_to_execute="INSERT INTO `oc_product_to_store` (`product_id`, `customer_group_id`) VALUES  (".$array_prodotti_inseriti[$row['codice articolo']].", ".$array_customer_group_inseriti[$row['codice listino']].",".$row['prezzo'].")";
+            $this->db->query($sql_to_execute);
         }
 
         }
 
         foreach($query_update_on_products as $key => $row){
-            $sql_to_execute  =$this->db->query("UPDATE `oc_product` SET ".$row." where `product_id`=".$key);
 
+            $sql_to_execute="UPDATE `oc_product` SET ".$row." where `product_id`=".$key;
+            $this->db->query($sql_to_execute);
         }
     }
 
