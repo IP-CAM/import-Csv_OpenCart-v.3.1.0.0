@@ -341,8 +341,7 @@ class ControllerExtensionImportCsv extends Controller
                     $sql = $this->db->query("SELECT oc_id from oc_synch where oc_id=".$parent_category_csvid." and module='Category' LIMIT 1");
 
                     $result_fetched_array_parent=$sql->rows;//variabile che contiene l'array della query
-//                    $parent_category_id=$result_fetched_array_parent[0]['oc_id'];
-                    $parent_category_id = 0;
+                    $parent_category_id=$result_fetched_array_parent[0]['oc_id'];
 
                 }
 
