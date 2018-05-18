@@ -2,142 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: ina
- * Date: 18-05-08
- * Time: 5.04.MD
+ * Date: 18-05-18
+ * Time: 6.06.MD
  */
 
-class ControllerExtensionImportCsv extends Controller
+class ControllerExtensionArticoli extends Controller
 {
-    const ANAGRAFICA_AGENTI = '/var/www/html/opencart/EsempiCSV/Anagrafica_agenti.csv';
+
     const ANAGRAFICA_ARTICOLI = '/var/www/html/opencart/EsempiCSV/Anagrafica_articoli.csv';
-    const ANAGRAFICA_CATALOGAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_catalogazione.csv';
-    const ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_categorie_classificazione.csv';
-    const ANAGRAFICA_CLIENTE = '/var/www/html/opencart/EsempiCSV/Anagrafica_cliente.csv';
-    const ANAGRAFICA_CODICI_IVA = '/var/www/html/opencart/EsempiCSV/Anagrafica_codici_iva.csv';
-    const ANAGRAFICA_DISPONIBILITA = '/var/www/html/opencart/EsempiCSV/Anagrafica_disponibilita.csv';
-    const ANAGRAFICA_LISTINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_listini.csv';
-    const ANAGRAFICA_MAGAZZINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_magazzini.csv';
-    const ANAGRAFICA_ORDINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_ordini.csv';
-    const ANAGRAFICA_PAGAMENTI = '/var/www/html/opencart/EsempiCSV/Anagrafica_pagamenti.csv';
-    const ANAGRAFICA_PREZZI = '/var/www/html/opencart/EsempiCSV/Anagrafica_prezzi.csv';
-    const ANAGRAFICA_SCANDENZARIO = '/var/www/html/opencart/EsempiCSV/Anagrafica_scandenzario.csv';
-
-
-    public function alterTableCustomers(){
-        $this->db->query("ALTER TABLE oc_customer 
-           MODIFY firstname varchar(200) ,
-           MODIFY lastname varchar(200) ;");
-        echo "Column changed with success";
-    }
 
     public function index(){
+        $this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI);
+        echo "Inserimento finito con successo";
 
-        $fileList = glob('/var/www/html/opencart/EsempiCSV/*.csv');
-
-       //Loop through the array that glob returned.
-        foreach($fileList as $filename){
-            //Simply print all the files out onto the screen.
-            if (is_file($filename)){
-
-             if($filename == self::ANAGRAFICA_AGENTI){
-
-             }elseif ($filename == self::ANAGRAFICA_ARTICOLI){
-                 $this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CATALOGAZIONE){
-                 $this->importAnagraficaCatalogazione(self::ANAGRAFICA_CATALOGAZIONE);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE){
-                 $this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CLIENTE){
-                 $this->importAnagraficaCliente(self::ANAGRAFICA_CLIENTE);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CODICI_IVA){
-
-             }elseif ($filename == self::ANAGRAFICA_DISPONIBILITA){
-                 $this->importAnagraficaDisponibilita(self::ANAGRAFICA_DISPONIBILITA);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_LISTINI){
-               $this->importAnagraficaListini(self::ANAGRAFICA_LISTINI);
-               continue;
-             }elseif ($filename == self::ANAGRAFICA_MAGAZZINI){
-
-             }elseif ($filename == self::ANAGRAFICA_ORDINI){
-
-             }elseif ($filename == self::ANAGRAFICA_PAGAMENTI){
-
-             }elseif ($filename == self::ANAGRAFICA_PREZZI){
-                 $this->importAnagraficaPrezzi(self::ANAGRAFICA_PREZZI);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_SCANDENZARIO){
-
-             }
-            }
-        }
-
-        echo "Inserimento fatto con successo";
     }
-
 
     //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv_prezzi($filename)
-    {
-        ini_set('memory_limit', '512M');
-        ini_set('max_execution_time', '180');
-        $csv = array();
-        $rowsWithKeys = [];
-        if (($handle = fopen($filename, "r")) !== FALSE) {
-            $headers = fgetcsv($handle);// skip the first row of the csv file
-            $headers = explode(";", $headers[0]);
-            while (($result = fgetcsv($handle, 1000, ";")) !== false)  {
-
-                    $csv = [
-                        $headers[0] => $result[0],
-                        $headers[1] => $result[1],
-                        $headers[2] => floatval(str_replace(",",".",$result[2])),
-                        $headers[3] => $result[3],
-                        $headers[4] => $result[4],
-                        $headers[5] => $result[5],
-                        $headers[6] => $result[6],
-                        $headers[7] => $result[7],
-                        $headers[8] => $result[8],
-                        $headers[9] => $result[9],
-                        $headers[10] => $result[10],
-                        $headers[11] => $result[11]
-                    ];
-
-                $rowsWithKeys[] = $csv;
-
-            }
-            fclose($handle);
-            return $rowsWithKeys;
-        }
-    }
-
-
-    //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv_1($nome_file)
-    {
-        $csvFile = fopen($nome_file, 'r');
-        $csv = array_map('str_getcsv', file($nome_file));
-        $headers = $csv[0];
-        fgetcsv($csvFile);// skip the first row of the csv file
-        $rowsWithKeys = [];
-        while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
-            $newRow = [];
-            $splitHeaders = explode(";", $headers[0]);
-
-            foreach ($splitHeaders as $k => $key) {
-                $newRow[$key] = $line[$k];
-            }
-            $rowsWithKeys[] = $newRow;
-        }
-        fclose($csvFile);
-        return $rowsWithKeys;
-    }
-
-//    //funzione per leggere i CSV e restiture un array di righe
     function elabora_csv_articoli($filename,$enclosure="'", $escapestring="'"){
 
         ini_set('memory_limit', '512M');
@@ -147,22 +27,21 @@ class ControllerExtensionImportCsv extends Controller
         if (($handle = fopen($filename, "r")) !== FALSE) {
             $headers = fgetcsv($handle);// skip the first row of the csv file
             $splitHeaders = explode(";", $headers[0]);
-        while(($line = fgetcsv($handle, 1000, ";",$enclosure, $escapestring)) !== FALSE){
+            while(($line = fgetcsv($handle, 1000, ";",$enclosure, $escapestring)) !== FALSE){
 
-            $newRow = [];
-            foreach ($splitHeaders as $k => $key) {
-                $newRow[$key] = $line[$k];
+                $newRow = [];
+                foreach ($splitHeaders as $k => $key) {
+                    $newRow[$key] = $line[$k];
+                }
+                $rowsWithKeys[] = $newRow;
             }
-            $rowsWithKeys[] = $newRow;
+
+            fclose($handle);
+            return $rowsWithKeys;
         }
+    }
 
-       fclose($handle);
-       return $rowsWithKeys;
-       }
-   }
-
-
-   //la funzione restituisce 0 se è da fare una insert, -1 se i valori sono già presenti invariati nel DB, >0, ovvero l'ID della tabella da modificare
+    //la funzione restituisce 0 se è da fare una insert, -1 se i valori sono già presenti invariati nel DB, >0, ovvero l'ID della tabella da modificare
     function retrieve_oc_id($csv_id,$opencart_table,$row_csv)
     {
         $string_checksum='';
@@ -272,6 +151,99 @@ class ControllerExtensionImportCsv extends Controller
         $text = strtolower($text);
 
         return $text;
+    }
+
+    //elaborazione di Anagrafica_articoli.csv
+    public function importAnagraficaArticoli($file){
+
+        $righe=$this->elabora_csv_articoli($file);
+
+        $array_prodotti_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei prodotti e come valore il product_id in oc_product
+        foreach($righe as $key => $row) {
+
+            $id_opencart_item = $this->retrieve_oc_id($row["codice"], 'oc_product', $row);
+            if ($id_opencart_item < 0) {
+                $array_prodotti_inseriti[$row["codice"]] = $id_opencart_item; //nothing to update
+            } else {
+                $data_update = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $row['ultima modifica'])));
+
+                $data_disponibilitae = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $row['data disponibilita'])));
+
+                $Data_scadenza = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $row['Data_scadenza'])));
+
+                $minimum = "";
+                if ($id_opencart_item == 0) {
+
+                    //quantity e stock_status_id li aggiorneremo dopo sulla base di Anagrafica_diponinilita;
+                    $quantity = 0;
+                    $stock_status_id = 0;
+                    $prezzo = 0; //lo aggiorniamo sul parsing dell'anagrafica listini
+                    $status = 1;
+                    $minimum = $row['pezzi_confezione'];
+                    $sql_to_execute = "INSERT INTO `oc_product` (`model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `date_start`, `date_end`) VALUES ('" . addslashes($row["descrizione"]) . "', '" . addslashes($row["codice"]) . "', '', '', '', '', '', '', " . $quantity . ",  " . $stock_status_id . ", 'catalog/" . addslashes($row["codice"]) . ".jpg', 0, 1, " . $prezzo . ", 0, 0, '2017-01-01', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, " . $minimum . ", " . $minimum . ", 1, " . $status . ", 0, '" . $data_update . "', '" . $data_update . "', '0000-00-00 00:00:00', '0000-00-00 00:00:00')";
+
+                    $this->db->query($sql_to_execute);
+
+                    $sql = $this->db->query("select product_id from oc_product ORDER BY product_id DESC LIMIT 1");
+                    $result_fetched_array=$sql->rows;//variabile che contiene l'array della query
+                    $id_opencart_item = $result_fetched_array[0]['product_id'];;
+
+                    $sql_to_execute = "INSERT INTO `oc_product_image` (`product_id`, `image`, `sort_order`) VALUES (" . $id_opencart_item . ", 'catalog/" . $row["codice"] . ".jpg', 0)";
+                    $this->db->query($sql_to_execute);
+
+                } else {
+                    $sql_to_execute = "UPDATE `oc_product` SET `model`='" . addslashes($row["descrizione"]) . "',`subtract`=" . $minimum . ", `minimum`=" . $minimum . ", `date_modified`='" . $data_update . "' where `product_id`=" . $id_opencart_item;
+                    $this->db->query($sql_to_execute);
+                }
+                $array_prodotti_inseriti[$row["codice"]] = $id_opencart_item;
+                $this->sync_checksums($row["codice"], $id_opencart_item, 'oc_product', $row);
+                //Aggiorniamo la descrizione della categoria
+                $sql_to_execute = "DELETE FROM `oc_product_description`  WHERE `product_id`=" . $id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute = "INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `subtitle`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`, `introtext`) VALUES
+	         	(" . $id_opencart_item . ", 2, '" . addslashes($row["descrizione"]) . "', '', '" . addslashes($row["descrizione aggiuntiva"]) . "', '" . addslashes($row["descrizione aggiuntiva"]) . "','" . addslashes($row["descrizione aggiuntiva"]) . "','" . addslashes($row["descrizione aggiuntiva"]) . "','" . addslashes($row["descrizione aggiuntiva"]) . "','" . addslashes($row["descrizione aggiuntiva"]) . "')";
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute = "INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
+	         	(" . $id_opencart_item . ", 2)";
+                $this->db->query($sql_to_execute);
+
+
+                //aggiorniamo il layout
+                $sql_to_execute = "DELETE FROM `oc_product_to_layout`  WHERE `product_id`=" . $id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute = "INSERT INTO `oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES(" . $id_opencart_item . ", 0,0)";
+                $this->db->query($sql_to_execute);
+                //aggiorniamo l'associazione allo store
+                $sql_to_execute = "DELETE FROM `oc_product_to_store`  WHERE `product_id`=" . $id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute = "INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES  (" . $id_opencart_item . ", 0)";
+                $this->db->query($sql_to_execute);
+
+                //aggiorniamo i link allo store
+                //aggiorniamo l'associazione allo store
+                $sql_to_execute = "DELETE FROM `oc_seo_url`  WHERE `query`='product_id=" . $id_opencart_item . "'";
+                $this->db->query($sql_to_execute);
+
+                //creare una funzione che fa lo slug della
+                $slug = $this->create_slug($row["descrizione aggiuntiva"]);
+
+                //controlliamo prima l'univocità dello slug_altrimenti gli appendiamo l'id della categoria
+                $sql = "SELECT * from oc_seo_url where keyword='" . $slug . "'";
+                $sql = $this->db->query($sql);
+                $result_fetched_array_seo_url = $sql->rows;//variabile che contiene l'array della query
+
+                if (count($result_fetched_array_seo_url) > 0) {
+                    $slug .= '_' . $id_opencart_item;
+                }
+                $sql_to_execute = "INSERT INTO `oc_seo_url` (`store_id`, `language_id`, `query`, `keyword`) VALUES(0, 1, 'product_id=" . $id_opencart_item . "', '" . $slug . "')";
+                $this->db->query($sql_to_execute);
+
+            }
+        }
     }
 
 }

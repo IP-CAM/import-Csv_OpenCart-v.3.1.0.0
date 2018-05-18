@@ -2,117 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: ina
- * Date: 18-05-08
- * Time: 5.04.MD
+ * Date: 18-05-18
+ * Time: 6.04.MD
  */
 
-class ControllerExtensionImportCsv extends Controller
+class ControllerExtensionCategorieClassificazione extends Controller
 {
-    const ANAGRAFICA_AGENTI = '/var/www/html/opencart/EsempiCSV/Anagrafica_agenti.csv';
-    const ANAGRAFICA_ARTICOLI = '/var/www/html/opencart/EsempiCSV/Anagrafica_articoli.csv';
-    const ANAGRAFICA_CATALOGAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_catalogazione.csv';
     const ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_categorie_classificazione.csv';
-    const ANAGRAFICA_CLIENTE = '/var/www/html/opencart/EsempiCSV/Anagrafica_cliente.csv';
-    const ANAGRAFICA_CODICI_IVA = '/var/www/html/opencart/EsempiCSV/Anagrafica_codici_iva.csv';
-    const ANAGRAFICA_DISPONIBILITA = '/var/www/html/opencart/EsempiCSV/Anagrafica_disponibilita.csv';
-    const ANAGRAFICA_LISTINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_listini.csv';
-    const ANAGRAFICA_MAGAZZINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_magazzini.csv';
-    const ANAGRAFICA_ORDINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_ordini.csv';
-    const ANAGRAFICA_PAGAMENTI = '/var/www/html/opencart/EsempiCSV/Anagrafica_pagamenti.csv';
-    const ANAGRAFICA_PREZZI = '/var/www/html/opencart/EsempiCSV/Anagrafica_prezzi.csv';
-    const ANAGRAFICA_SCANDENZARIO = '/var/www/html/opencart/EsempiCSV/Anagrafica_scandenzario.csv';
-
-
-    public function alterTableCustomers(){
-        $this->db->query("ALTER TABLE oc_customer 
-           MODIFY firstname varchar(200) ,
-           MODIFY lastname varchar(200) ;");
-        echo "Column changed with success";
-    }
 
     public function index(){
+        $this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE);
+        echo "Inserimento finito con successo";
 
-        $fileList = glob('/var/www/html/opencart/EsempiCSV/*.csv');
-
-       //Loop through the array that glob returned.
-        foreach($fileList as $filename){
-            //Simply print all the files out onto the screen.
-            if (is_file($filename)){
-
-             if($filename == self::ANAGRAFICA_AGENTI){
-
-             }elseif ($filename == self::ANAGRAFICA_ARTICOLI){
-                 $this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CATALOGAZIONE){
-                 $this->importAnagraficaCatalogazione(self::ANAGRAFICA_CATALOGAZIONE);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE){
-                 $this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CLIENTE){
-                 $this->importAnagraficaCliente(self::ANAGRAFICA_CLIENTE);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_CODICI_IVA){
-
-             }elseif ($filename == self::ANAGRAFICA_DISPONIBILITA){
-                 $this->importAnagraficaDisponibilita(self::ANAGRAFICA_DISPONIBILITA);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_LISTINI){
-               $this->importAnagraficaListini(self::ANAGRAFICA_LISTINI);
-               continue;
-             }elseif ($filename == self::ANAGRAFICA_MAGAZZINI){
-
-             }elseif ($filename == self::ANAGRAFICA_ORDINI){
-
-             }elseif ($filename == self::ANAGRAFICA_PAGAMENTI){
-
-             }elseif ($filename == self::ANAGRAFICA_PREZZI){
-                 $this->importAnagraficaPrezzi(self::ANAGRAFICA_PREZZI);
-                 continue;
-             }elseif ($filename == self::ANAGRAFICA_SCANDENZARIO){
-
-             }
-            }
-        }
-
-        echo "Inserimento fatto con successo";
-    }
-
-
-    //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv_prezzi($filename)
-    {
-        ini_set('memory_limit', '512M');
-        ini_set('max_execution_time', '180');
-        $csv = array();
-        $rowsWithKeys = [];
-        if (($handle = fopen($filename, "r")) !== FALSE) {
-            $headers = fgetcsv($handle);// skip the first row of the csv file
-            $headers = explode(";", $headers[0]);
-            while (($result = fgetcsv($handle, 1000, ";")) !== false)  {
-
-                    $csv = [
-                        $headers[0] => $result[0],
-                        $headers[1] => $result[1],
-                        $headers[2] => floatval(str_replace(",",".",$result[2])),
-                        $headers[3] => $result[3],
-                        $headers[4] => $result[4],
-                        $headers[5] => $result[5],
-                        $headers[6] => $result[6],
-                        $headers[7] => $result[7],
-                        $headers[8] => $result[8],
-                        $headers[9] => $result[9],
-                        $headers[10] => $result[10],
-                        $headers[11] => $result[11]
-                    ];
-
-                $rowsWithKeys[] = $csv;
-
-            }
-            fclose($handle);
-            return $rowsWithKeys;
-        }
     }
 
 
@@ -137,32 +38,7 @@ class ControllerExtensionImportCsv extends Controller
         return $rowsWithKeys;
     }
 
-//    //funzione per leggere i CSV e restiture un array di righe
-    function elabora_csv_articoli($filename,$enclosure="'", $escapestring="'"){
-
-        ini_set('memory_limit', '512M');
-        ini_set('max_execution_time', '180');
-        $rowsWithKeys = [];
-
-        if (($handle = fopen($filename, "r")) !== FALSE) {
-            $headers = fgetcsv($handle);// skip the first row of the csv file
-            $splitHeaders = explode(";", $headers[0]);
-        while(($line = fgetcsv($handle, 1000, ";",$enclosure, $escapestring)) !== FALSE){
-
-            $newRow = [];
-            foreach ($splitHeaders as $k => $key) {
-                $newRow[$key] = $line[$k];
-            }
-            $rowsWithKeys[] = $newRow;
-        }
-
-       fclose($handle);
-       return $rowsWithKeys;
-       }
-   }
-
-
-   //la funzione restituisce 0 se è da fare una insert, -1 se i valori sono già presenti invariati nel DB, >0, ovvero l'ID della tabella da modificare
+    //la funzione restituisce 0 se è da fare una insert, -1 se i valori sono già presenti invariati nel DB, >0, ovvero l'ID della tabella da modificare
     function retrieve_oc_id($csv_id,$opencart_table,$row_csv)
     {
         $string_checksum='';
@@ -274,4 +150,118 @@ class ControllerExtensionImportCsv extends Controller
         return $text;
     }
 
+    //elaborazione di Anagrafica_categorie_classificazione.csv
+    public function importAnagraficaCategorieClassificazione($file){
+        $righe=$this->elabora_csv_1($file);
+        $array_category_inserite=array(); //array che come chiave avrà l'ID nel CSV delle categorie e come valore il category_id in oc_category
+        $parent_category_id = 0;
+        foreach($righe as $key => $row){
+
+            $id_opencart_item=$this->retrieve_oc_id($row["codice categoria"],'oc_category',$row);
+
+            if ($id_opencart_item < 0) {
+                $array_category_inserite[$row["codice categoria"]]=$id_opencart_item; //nothing to update
+            }
+            else {
+
+                if ($row['stato']=='SI') {
+                    $category_status=1;
+                }
+                else {
+                    $category_status=0;
+                }
+                if ($row['codice sezione']=='CAT') {
+                    $parent_category_id=0;
+                    $category_level=0;
+                }
+                else {
+                    //retrieve tra parent category
+                    $temp=explode('  ',$row['codice categoria']);
+                    $parent_category_csvid=$temp[count($temp)-1];
+//                    var_dump($parent_category_csvid);die;
+                    $category_level=count($temp)-1;
+                    $sql = $this->db->query("SELECT oc_id from oc_synch where oc_id=".$parent_category_csvid." and module='Category' LIMIT 1");
+
+                    $result_fetched_array_parent=$sql->rows;//variabile che contiene l'array della query
+                    $parent_category_id=$result_fetched_array_parent[0]['oc_id'];
+
+                }
+
+                $data_update = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $row['ultima modifica'])));
+
+                if ($id_opencart_item == 0) {
+                    $this->db->query("INSERT INTO `oc_category` ( `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`, `sorting`, `viewtype`, `itemsperpage`, `showviewtype`, `showsorting`, `showitemsperpage`) VALUES ( '', ".$parent_category_id.", 0, 2, 2, ".$category_status.", '".$data_update."', '".$data_update."', 1, 1, 15, 0, 0, 0)");
+
+                    $sql=$this->db->query("select category_id from oc_category ORDER BY category_id DESC LIMIT 1");
+                    $result_fetched_array=$sql->rows;//variabile che contiene l'array della query
+                    $id_opencart_item=$result_fetched_array[0]['category_id'];
+                }
+                else {
+
+                    $this->db->query("UPDATE `oc_category` SET `parent_id`=".$parent_category_id.", `status`=".$category_status.", `date_modified`='".$data_update."' where `category_id`=".$id_opencart_item);
+                }
+
+                $array_category_inserite[$row["codice categoria"]]=$id_opencart_item;
+
+                $this->sync_checksums($row["codice categoria"],$id_opencart_item,'oc_category',$row);
+
+                //aggiungiamo una voce in oc_category_path
+                if ($parent_category_id==0) {
+                    $path_id=$id_opencart_item;
+                }
+                else {
+                    $path_id=$parent_category_id;
+                }
+
+                $sql_to_execute="DELETE FROM `oc_category_path`  WHERE `category_id`=".$id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute="INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
+		        (".$id_opencart_item.", ".$path_id.", ".$category_level.")";
+                $this->db->query($sql_to_execute);
+
+                //Aggiorniamo la descrizione della categoria
+                $sql_to_execute="DELETE FROM `oc_category_description`  WHERE `category_id`=".$id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute="INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+	        	(".$id_opencart_item.", 2, '".$row["descrizione categoria"]."', '', '".$row["descrizione categoria"]."', '', '')";
+                $this->db->query($sql_to_execute);
+
+                //aggiorniamo il layout
+                $sql_to_execute="DELETE FROM `oc_category_to_layout`  WHERE `category_id`=".$id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute="INSERT INTO `oc_category_to_layout` (`category_id`, `store_id`, `layout_id`) VALUES (".$id_opencart_item.", 0,0)";
+                $this->db->query($sql_to_execute);
+
+                //aggiorniamo l'associazione allo store
+                $sql_to_execute="DELETE FROM `oc_category_to_store`  WHERE `category_id`=".$id_opencart_item;
+                $this->db->query($sql_to_execute);
+
+                $sql_to_execute="INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES (".$id_opencart_item.", 0)";
+                $this->db->query($sql_to_execute);
+
+                //aggiorniamo i link allo store
+                //aggiorniamo l'associazione allo store
+                $sql_to_execute="DELETE FROM `oc_seo_url`  WHERE `query`='category_id=".$id_opencart_item."'";
+                $this->db->query($sql_to_execute);
+
+                //creare una funzione che fa lo slug della
+                $slug=$this->create_slug($row["descrizione categoria"]);
+
+                //controlliamo prima l'univocità dello slug_altrimenti gli appendiamo l'id della categoria
+                $sql=$this->db->query("SELECT * from oc_seo_url where keyword='".$slug."' LIMIT 1");
+
+                $result_fetched_array_seo_url=$sql->rows;//variabile che contiene l'array della query
+
+                if (count($result_fetched_array_seo_url)>0) {
+                    $slug.='_'.$id_opencart_item;
+                }
+                $sql_to_execute="INSERT INTO `oc_seo_url` (`store_id`, `language_id`, `query`, `keyword`) VALUES(0, 1, 'category_id=".$id_opencart_item."', '".$slug."')";
+                $this->db->query($sql_to_execute);
+            }
+        }
+
+    }
 }
