@@ -598,7 +598,6 @@ class ControllerExtensionImportCsv extends Controller
     public function importAnagraficaCliente($filename){
         $righe=$this->elabora_csv_1($filename);
         $array_clienti_inseriti=array(); //array che come chiave avrà l'ID nel CSV dei clienti e come valore il customer_id in oc_customer
-        $array_customer_group_inseriti = [];
 
         foreach($righe as $key => $row){
             $id_opencart_item=$this->retrieve_oc_id($row["codice"],'oc_customer',$row);
