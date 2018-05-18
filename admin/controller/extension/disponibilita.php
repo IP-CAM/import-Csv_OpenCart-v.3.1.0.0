@@ -8,7 +8,7 @@
 
 class ControllerExtensionDisponibilita extends Controller
 {
-    const ANAGRAFICA_DISPONIBILITA = '/var/www/html/opencart/EsempiCSV/Anagrafica_disponibilita.csv';
+    const ANAGRAFICA_DISPONIBILITA = '/var/www/html/importer/Anagrafica_disponibilita.csv';
 
     public function index(){
         $this->importAnagraficaDisponibilita(self::ANAGRAFICA_DISPONIBILITA);

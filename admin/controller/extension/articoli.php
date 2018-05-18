@@ -9,7 +9,7 @@
 class ControllerExtensionArticoli extends Controller
 {
 
-    const ANAGRAFICA_ARTICOLI = '/var/www/html/opencart/EsempiCSV/Anagrafica_articoli.csv';
+    const ANAGRAFICA_ARTICOLI = '/var/www/html/importer/Anagrafica_articoli.csv';
 
     public function index(){
         $this->importAnagraficaArticoli(self::ANAGRAFICA_ARTICOLI);

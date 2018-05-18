@@ -9,7 +9,7 @@
 class ControllerExtensionPrezzi extends Controller
 {
 
-    const ANAGRAFICA_PREZZI = '/var/www/html/opencart/EsempiCSV/Anagrafica_prezzi.csv';
+    const ANAGRAFICA_PREZZI = '/var/www/html/importer/Anagrafica_prezzi.csv';
 
     public function index(){
         $this->importAnagraficaPrezzi(self::ANAGRAFICA_PREZZI);

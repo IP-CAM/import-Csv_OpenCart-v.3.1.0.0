@@ -9,7 +9,7 @@
 class ControllerExtensionListini extends Controller
 {
 
-    const ANAGRAFICA_LISTINI = '/var/www/html/opencart/EsempiCSV/Anagrafica_listini.csv';
+    const ANAGRAFICA_LISTINI = '/var/www/html/importer/Anagrafica_listini.csv';
 
     public function index(){
         $this->importAnagraficaListini(self::ANAGRAFICA_LISTINI);

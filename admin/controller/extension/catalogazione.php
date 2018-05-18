@@ -9,7 +9,7 @@
 class ControllerExtensionCatalogazione extends Controller
 {
 
-    const ANAGRAFICA_CATALOGAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_catalogazione.csv';
+    const ANAGRAFICA_CATALOGAZIONE = '/var/www/html/importer/Anagrafica_catalogazione.csv';
 
     public function index(){
         $this->importAnagraficaCatalogazione(self::ANAGRAFICA_CATALOGAZIONE);

@@ -8,7 +8,7 @@
 
 class ControllerExtensionCategorieClassificazione extends Controller
 {
-    const ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE = '/var/www/html/opencart/EsempiCSV/Anagrafica_categorie_classificazione.csv';
+    const ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE = '/var/www/html/importer/Anagrafica_categorie_classificazione.csv';
 
     public function index(){
         $this->importAnagraficaCategorieClassificazione(self::ANAGRAFICA_CATEGORIE_CLASSIFICAZIONE);

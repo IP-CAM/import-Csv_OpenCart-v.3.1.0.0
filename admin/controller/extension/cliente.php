@@ -8,7 +8,7 @@
 
 class ControllerExtensionCliente extends Controller
 {
-    const ANAGRAFICA_CLIENTE = '/var/www/html/opencart/EsempiCSV/Anagrafica_cliente.csv';
+    const ANAGRAFICA_CLIENTE = '/var/www/html/importer/Anagrafica_cliente.csv';
 
 
     public function index(){
